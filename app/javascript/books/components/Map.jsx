@@ -24,10 +24,10 @@ class Map extends React.Component {
   setBookIdFromQueryString (qs) {
     this.qsParams = queryString.parse(qs);
     if(this.qsParams.book) {
-      this.bookId = Number(this.qsParams.book);
+      this.bookId = Number(this.qsParams.book.id);
     } else {
       this.bookId = 1;
-      this.props.history.push(`/?quote=${this.bookId}`);
+      this.props.history.push(`/?book=${this.bookId}`);
     }
   }
 
@@ -45,7 +45,7 @@ class Map extends React.Component {
     const nextBookId = Number(this.state.book.id) + 1;
     return(
       <div>
-        <Link to={`/?quote=${nextQuoteId}`}>Next</Link>
+        <Link to={`/?book=${nextBookId}`}>Next</Link>
         <p>{this.state.book.title}</p>
         <p>{this.state.book.author}</p>
       </div>
