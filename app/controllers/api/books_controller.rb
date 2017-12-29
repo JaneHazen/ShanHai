@@ -1,5 +1,5 @@
 class Api::BooksController < ApplicationController
-  def show
-    @book = Book.find(params[:id])
+  def index
+    @books = Book.all
   end
 end
