@@ -27,7 +27,7 @@ class Map extends Component {
     } else {
       this.setState({
         showPopup: !this.state.showPopup,
-        targetCountry: "There was an error"
+        targetCountry: []
       })
     }
   }
