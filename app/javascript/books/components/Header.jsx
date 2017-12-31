@@ -1,20 +1,43 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 
+// components
+import Signup from './Signup'
+import Login from './Login'
+import Edit from './Edit'
+
 class Header extends React.Component {
-  render(){
-    return(
-      <header>
-        <div className="flexbox-container">
-            <Link to="/" className="logo">
-              <span></span>
-            </Link>
-            <nav>
-              <Link to="/home">Home</Link>
-            </nav>
-          </div>
-        </header>
-      )
+
+  constructor(){
+    super();
+    this.state = {
+      page:"login",
+      currentUser:null
+    }
+  }
+
+  changePage(newPage) {
+    this.setState({
+      page: newPage
+    })
+
+  }
+
+  updateCurrentUser(email) {
+    this.setState({
+      currentUser: email
+    });
+  }
+
+  render() {
+    switch(this.state.page) {
+      case "signup":
+        return <Signup changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
+      case "login":
+        return <Login changePage={this.changePage}/>
+      case "edit":
+        return <Edit changePage={this.changePage}/>
+    }
   }
 }
 export default Header
