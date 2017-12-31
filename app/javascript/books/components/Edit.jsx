@@ -10,14 +10,12 @@ class Edit extends React.Component {
 
   constructor(props){
     super(props);
+    this.state = {
+      editSuccessful:null,
+      deleteUnsuccessful:false
+    }
   }
 
-  getInitialState() {
-    return {
-      editSuccessful: null,
-      deleteUnsuccessful: false
-    };
-  }
 
   handleUpdate(e) {
     e.preventDefault();

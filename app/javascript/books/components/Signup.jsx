@@ -8,6 +8,7 @@ class Signup extends React.Component {
       signupUnsuccessful:false,
       currentUser:""
     }
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
   componentWillMount(){
@@ -18,23 +19,20 @@ class Signup extends React.Component {
   handleSignup(e) {
     e.preventDefault();
     var that = this;
-    var userInfo = {
+
+    axios.post('/users', {
       user: {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
         password_confirmation: document.getElementById("password_confirmation").value
       }
-    }
-
-    axios.post('/users', {
-      data:userInfo
     })
     .then(function(response){
       that.props.changePage("edit");
       that.props.updateCurrentUser(res.email);
     })
     .catch(function(error){
-      that.updateSignupError(error);
+      console.log(error);
     })
 
   }
