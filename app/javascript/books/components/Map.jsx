@@ -4,6 +4,7 @@ import {feature} from 'topojson-client'
 // import {Link} from 'react-router-dom';
 // import queryString from 'query-string';
 // import axios from 'axios';
+import Popup from './Popup'
 
 class Map extends Component {
 
@@ -11,8 +12,24 @@ class Map extends Component {
     super();
     this.state = {
       worldData: [],
+      showPopup: false,
+      targetCountry: []
     }
     this.handleCountryClick = this.handleCountryClick.bind(this)
+  }
+
+  togglePopup(country){
+    if(country){
+      this.setState({
+        showPopup:!this.state.showPopup,
+        targetCountry: country
+      })
+    } else {
+      this.setState({
+        showPopup: !this.state.showPopup,
+        targetCountry: []
+      })
+    }
   }
 
   findCountryName(countryIndex){
@@ -100,7 +117,6 @@ class Map extends Component {
     { "countryCode":"728", "countryName":"South Sudan"},
     { "countryCode":"729", "countryName":"Sudan"},
     { "countryCode":"818", "countryName":"Egypt"},
-    { "countryCode":"434", "countryName":"Libya"},
     { "countryCode":"826", "countryName":"United Kingdom"},
     { "countryCode":"372", "countryName":"Ireland"},
     { "countryCode":"620", "countryName":"Portugal"},
@@ -192,11 +208,8 @@ class Map extends Component {
       <ul>
         {countryDirectory.map(function(code, i){
           if(code.countryCode === countryIndex.id){
-            console.log(code.countryName)
+            console.log("I'm IN HERE" + code.countryName)
              return <li key={i}>{code.countryName}</li>
-            }else {
-              console.log("nope")
-             return <li key={i}>Not Found</li>
             }
         })}
       </ul>
@@ -208,6 +221,7 @@ class Map extends Component {
   handleCountryClick(countryIndex) {
     const country = this.findCountryName(this.state.worldData[countryIndex])
     console.log("!!!!!" + country)
+    this.togglePopup(country)
     console.log(`Clicked on this country ${country} country: `, this.state.worldData[countryIndex])
   }
 
@@ -235,6 +249,7 @@ class Map extends Component {
   render(){
 
     return(
+      <div>
       <svg width={800} height={450} viewBox="0 0 800 450">
         <g className="countries">
           {
@@ -253,6 +268,15 @@ class Map extends Component {
         </g>
 
       </svg>
+      {this.state.showPopup ?
+        <Popup
+          text='Close Me'
+          country = {this.state.targetCountry}
+          closePopup={this.togglePopup.bind(this)}
+        />
+        : null
+      }
+      </div>
       )
   }
 }

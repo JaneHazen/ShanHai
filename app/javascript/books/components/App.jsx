@@ -3,11 +3,15 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
-import Map from './Map'
+
+// components
+import Map from './Map';
+import Header from './Header'
 
 const App = (props) => (
   <Router>
     <div>
+      <Header/>
       <Route
         path="/"
         component={Map}
