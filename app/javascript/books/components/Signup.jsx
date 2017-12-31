@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Signup extends React.Component {
   constructor(){
@@ -7,32 +8,33 @@ class Signup extends React.Component {
       signupUnsuccessful:false,
       currentUser:""
     }
+    this.handleSignup = this.handleSignup.bind(this);
+  }
+
+  componentWillMount(){
+    console.log("We'RE HERE")
   }
 
 
   handleSignup(e) {
     e.preventDefault();
     var that = this;
-    var userInfo = {
+
+    axios.post('/users', {
       user: {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
         password_confirmation: document.getElementById("password_confirmation").value
       }
-    }
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:3000/users",
-      dataType: "json",
-      data: userInfo,
-      error: function (error) {
-        that.updateSignupError()
-      },
-      success: function (res) {
-        that.props.changePage("edit");
-        that.props.updateCurrentUser(res.email);
-      },
-    });
+    })
+    .then(function(response){
+      that.props.changePage("edit");
+      that.props.updateCurrentUser(res.email);
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+
   }
 
   updateSignupError() {

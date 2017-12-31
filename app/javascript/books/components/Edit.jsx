@@ -7,12 +7,15 @@ import Logout from './Logout'
 
 
 class Edit extends React.Component {
-  getInitialState() {
-    return {
-      editSuccessful: null,
-      deleteUnsuccessful: false
-    };
+
+  constructor(props){
+    super(props);
+    this.state = {
+      editSuccessful:null,
+      deleteUnsuccessful:false
+    }
   }
+
 
   handleUpdate(e) {
     e.preventDefault();

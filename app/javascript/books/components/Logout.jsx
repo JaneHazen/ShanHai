@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 
-
 class Logout extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
 
   handleLogout(e) {
     e.preventDefault();
     var that = this;
+
     $.ajax({
       type: "Delete",
       url: "http://localhost:3000/users/sign_out",
