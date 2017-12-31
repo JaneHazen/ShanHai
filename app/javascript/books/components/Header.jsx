@@ -16,11 +16,11 @@ class Header extends React.Component {
     }
   }
 
-
   changePage(newPage) {
     this.setState({
       page: newPage
-    });
+    })
+
   }
 
   updateCurrentUser(email) {
