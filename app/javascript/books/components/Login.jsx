@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import axios from 'axios';
 
 class Login extends React.Component {
 
@@ -20,19 +20,17 @@ class Login extends React.Component {
         password: document.getElementById("password").value
       }
     }
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:3000/users/sign_in",
-      dataType: "json",
-      data: userInfo,
-      error: function (error) {
-        that.updateLoginError();
-      },
-      success: function (res) {
+
+    axios.post('/users/sign_in', {
+      data: userInfo})
+      .then(function(response){
         that.props.changePage("edit");
         that.props.updateCurrentUser(res.email);
-      },
-    });
+      })
+      .catch(function(error) {
+        that.updateLoginError(error)
+      });
+
   }
 
   updateLoginError() {
@@ -40,6 +38,7 @@ class Login extends React.Component {
       loginUnsuccessful: true
     });
   }
+
 
   render() {
     var errorClass = this.state.loginUnsuccessful ? "" : "hidden"

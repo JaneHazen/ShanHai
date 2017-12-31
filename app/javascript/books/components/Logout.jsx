@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import 'axios' from 'axios';
 
 class Logout extends React.Component {
 
@@ -10,6 +10,7 @@ class Logout extends React.Component {
   handleLogout(e) {
     e.preventDefault();
     var that = this;
+
     $.ajax({
       type: "Delete",
       url: "http://localhost:3000/users/sign_out",

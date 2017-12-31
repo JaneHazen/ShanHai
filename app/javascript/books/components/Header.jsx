@@ -14,13 +14,13 @@ class Header extends React.Component {
       page:"login",
       currentUser:null
     }
+    this.changePage = this.changePage.bind(this)
   }
 
   changePage(newPage) {
     this.setState({
       page: newPage
     })
-
   }
 
   updateCurrentUser(email) {

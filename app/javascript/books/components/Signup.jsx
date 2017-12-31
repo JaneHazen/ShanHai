@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Signup extends React.Component {
   constructor(){
@@ -24,19 +25,18 @@ class Signup extends React.Component {
         password_confirmation: document.getElementById("password_confirmation").value
       }
     }
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:3000/users",
-      dataType: "json",
-      data: userInfo,
-      error: function (error) {
-        that.updateSignupError()
-      },
-      success: function (res) {
-        that.props.changePage("edit");
-        that.props.updateCurrentUser(res.email);
-      },
-    });
+
+    axios.post('/users', {
+      data:userInfo
+    })
+    .then(function(response){
+      that.props.changePage("edit");
+      that.props.updateCurrentUser(res.email);
+    })
+    .catch(function(error){
+      that.updateSignupError(error);
+    })
+
   }
 
   updateSignupError() {
