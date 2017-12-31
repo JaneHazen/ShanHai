@@ -9,6 +9,10 @@ class Signup extends React.Component {
     }
   }
 
+  componentWillMount(){
+    console.log("We'RE HERE")
+  }
+
 
   handleSignup(e) {
     e.preventDefault();

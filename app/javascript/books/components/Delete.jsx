@@ -3,6 +3,10 @@ import React, {Component} from 'react';
 
 class Delete extends React.Component {
 
+  constructor(props){
+    super(props);
+  }
+
   handleDelete(e) {
     e.preventDefault();
     var that = this;

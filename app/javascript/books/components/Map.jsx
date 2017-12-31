@@ -201,7 +201,8 @@ class Map extends Component {
     { "countryCode":"036", "countryName":"Australia"},
     { "countryCode":"554", "countryName":"New Zealand"},
     { "countryCode":"304", "countryName":"Greenland"},
-    { "countryCode":"352", "countryName":"Iceland"}
+    { "countryCode":"010", "countryName":"Antarctica"},
+    { "countryCode":"352", "countryName":"Iceland"},
       ]
 
     return (

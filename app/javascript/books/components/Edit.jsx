@@ -7,6 +7,11 @@ import Logout from './Logout'
 
 
 class Edit extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
   getInitialState() {
     return {
       editSuccessful: null,

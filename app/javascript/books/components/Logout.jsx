@@ -3,6 +3,10 @@ import React, {Component} from 'react';
 
 class Logout extends React.Component {
 
+  constructor(props){
+    super(props);
+  }
+
   handleLogout(e) {
     e.preventDefault();
     var that = this;
