@@ -14,6 +14,7 @@ class Edit extends React.Component {
       editSuccessful:null,
       deleteUnsuccessful:false
     }
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
 

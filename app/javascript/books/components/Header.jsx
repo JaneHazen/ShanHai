@@ -15,6 +15,7 @@ class Header extends React.Component {
       currentUser:null
     }
     this.changePage = this.changePage.bind(this);
+    this.updateCurrentUser = this.updateCurrentUser.bind(this);
 
   }
 
@@ -27,7 +28,7 @@ class Header extends React.Component {
   updateCurrentUser(email) {
     this.setState({
       currentUser: email
-    });
+    })
   }
 
   render() {
@@ -35,7 +36,7 @@ class Header extends React.Component {
       case "signup":
         return <Signup changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
       case "login":
-        return <Login changePage={this.changePage}/>
+        return <Login changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
       case "edit":
         return <Edit changePage={this.changePage}/>
     }
