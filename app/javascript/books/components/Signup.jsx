@@ -6,19 +6,15 @@ class Signup extends React.Component {
     super();
     this.state = {
       signupUnsuccessful:false,
-      currentUser:""
     }
     this.handleSignup = this.handleSignup.bind(this);
   }
 
-  componentWillMount(){
-    console.log("We'RE HERE")
-  }
 
 
   handleSignup(e) {
     e.preventDefault();
-    var that = this;
+    var that = this
 
     axios.post('/users', {
       user: {
@@ -29,19 +25,15 @@ class Signup extends React.Component {
     })
     .then(function(response){
       that.props.changePage("edit");
-      that.props.updateCurrentUser(res.email);
+      that.props.updateCurrentUser(response.email);
     })
     .catch(function(error){
-      console.log(error);
+      console.log(error)
     })
 
   }
 
-  updateSignupError() {
-    this.setState({
-      signupUnsuccessful: true
-    });
-  }
+
 
   render() {
     var errorClass = this.state.signupUnsuccessful ? "" : "hidden"

@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Logout extends React.Component {
 
   constructor(props){
     super(props);
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleLogout(e) {
     e.preventDefault();
-    var that = this;
-
-    $.ajax({
-      type: "Delete",
-      url: "http://localhost:3000/users/sign_out",
-      dataType: "json",
-      error: function (error) {
-        console.log(error);
-      },
-      success: function (res) {
-        that.props.changePage("login");
-      },
-    });
+    var that = this
+    var email = this.props.currentUser
+    axios.delete('users/sign_out',{
+      email: email
+    })
+    .then(function(response){
+      that.props.changePage("login")
+    })
+    .catch(function(error){
+      console.log(error)
+    })
   }
 
   render() {

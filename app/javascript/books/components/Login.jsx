@@ -7,37 +7,34 @@ class Login extends React.Component {
     super(props);
     this.state = {
       signupUnsuccessful:false,
-      currentUser:null
     }
+    this.handleLogin = this.handleLogin.bind(this);
+    this.changePage = this.props.changePage.bind(this);
+    this.updateCurrentUser = this.props.updateCurrentUser.bind(this);
   }
 
   handleLogin(e) {
     e.preventDefault();
-    var that = this;
-    var userInfo = {
-      user: {
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
-      }
-    }
+    var that = this
 
     axios.post('/users/sign_in', {
-      data: userInfo})
+        user: {
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value
+        }
+      })
       .then(function(response){
+        console.log(that)
+        console.log(that.props)
         that.props.changePage("edit");
-        that.props.updateCurrentUser(res.email);
+        that.props.updateCurrentUser(response.email);
       })
       .catch(function(error) {
-        that.updateLoginError(error)
+        console.log(error);
       });
 
   }
 
-  updateLoginError() {
-    this.setState({
-      loginUnsuccessful: true
-    });
-  }
 
 
   render() {
