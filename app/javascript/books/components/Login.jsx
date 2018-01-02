@@ -23,6 +23,7 @@ class Login extends React.Component {
   handleLogin(e) {
     e.preventDefault();
     var that = this
+    var email = document.getElementById("email").value
 
     axios.post('/users/sign_in', {
         user: {
@@ -31,10 +32,8 @@ class Login extends React.Component {
         }
       })
       .then(function(response){
-        console.log(that)
-        console.log(that.props)
         that.props.changePage("edit");
-        that.props.updateCurrentUser(response.email);
+        that.props.updateCurrentUser(email);
       })
       .catch(function(error) {
         that.updateLoginError();

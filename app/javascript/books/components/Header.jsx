@@ -26,6 +26,8 @@ class Header extends React.Component {
   }
 
   updateCurrentUser(email) {
+    console.log("we got to the update")
+    console.log(email)
     this.setState({
       currentUser: email
     })
