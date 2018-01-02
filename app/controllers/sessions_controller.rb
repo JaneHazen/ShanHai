@@ -1,7 +1,10 @@
 class SessionsController < Devise::SessionsController
 
+  skip_before_action :verify_authenticity_token
+
   # POST /v1/login
   def create
+    p "x" * 100
     @user = User.find_by_email(user_params[:email])
     return invalid_login_attempt unless @user
 
