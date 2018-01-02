@@ -14,8 +14,8 @@ class Signup extends React.Component {
 
   handleSignup(e) {
     e.preventDefault();
-    var that = this
-    var email = document.getElementById("email").value
+    let that = this
+    let email = document.getElementById("email").value
     axios.post('/users', {
       user: {
         email: email,
@@ -36,7 +36,7 @@ class Signup extends React.Component {
 
 
   render() {
-    var errorClass = this.state.signupUnsuccessful ? "" : "hidden"
+    let errorClass = this.state.signupUnsuccessful ? "" : "hidden"
     return (
       <div>
         <h2>Signup</h2>
