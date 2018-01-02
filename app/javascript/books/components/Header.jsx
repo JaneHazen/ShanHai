@@ -22,7 +22,7 @@ class Header extends React.Component {
     }
 
     this.changePage = this.changePage.bind(this);
-    this.props.updateCurrentUser = this.props.updateCurrentUser.bind(this);
+
 
   }
 
