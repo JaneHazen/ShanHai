@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 // components
 import Signup from './Signup'
@@ -26,15 +27,15 @@ class Header extends React.Component {
   }
 
   componentDidMount(){
-    that = this
+    var that = this
     axios.get('/pages/are_we_there_yet',{
     })
     .then(function(response){
       console.log("THIS IS THE RESPONSE");
       console.log(response);
-      console.log(response.email);
+      console.log(response.data.email);
       that.setState({
-        currentUser: response.email
+        currentUser: response.data.email
       })
     })
     .catch(function(error){
