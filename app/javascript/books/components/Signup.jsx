@@ -15,16 +15,17 @@ class Signup extends React.Component {
   handleSignup(e) {
     e.preventDefault();
     var that = this
+    var email = document.getElementById("email").value
     axios.post('/users', {
       user: {
-        email: document.getElementById("email").value,
+        email: email,
         password: document.getElementById("password").value,
         password_confirmation: document.getElementById("password_confirmation").value
       }
     })
     .then(function(response){
       that.props.changePage("edit");
-      that.props.updateCurrentUser(response.email);
+      that.props.updateCurrentUser(email);
     })
     .catch(function(error){
       console.log(error)

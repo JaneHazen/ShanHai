@@ -1,9 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  before_action :authenticate_user!, except: [:new, :create]
-
-
-
   def create
     p "YO" *100
     @user = User.new(user_params)

@@ -17,10 +17,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def destroy
-    p "HELLO" *100
-    p params
-    @user = User.find_by_email(user_params[:email])
-    sign_out(@user)
+    sign_out(current_user)
     render :json=> {:success=>true}
   end
 

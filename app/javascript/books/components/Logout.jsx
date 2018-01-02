@@ -5,7 +5,7 @@ class Logout extends React.Component {
 
   constructor(props){
     super(props);
-    this.handleLogout = this.handleLogout.bind(this)
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogout(e) {
@@ -13,7 +13,6 @@ class Logout extends React.Component {
     var that = this
     var email = this.props.currentUser
     axios.delete('/users/sign_out', {
-      params: {email: email}
     })
     .then(function(response){
       that.props.changePage("login")
