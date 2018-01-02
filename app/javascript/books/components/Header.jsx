@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 // components
 import Signup from './Signup'
 import Login from './Login'
-import Edit from './Edit'
+import Logout from './Logout'
 
 class Header extends React.Component {
 
@@ -38,7 +38,7 @@ class Header extends React.Component {
       case "login":
         return <Login changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
       case "edit":
-        return <Edit changePage={this.changePage}/>
+        return <Logout changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
     }
   }
 }

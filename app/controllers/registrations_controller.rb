@@ -1,8 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    p "*" *100
-    p params
     @user = User.new(user_params)
     if @user.save
       render json: @user

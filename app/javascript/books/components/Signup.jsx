@@ -15,7 +15,6 @@ class Signup extends React.Component {
   handleSignup(e) {
     e.preventDefault();
     var that = this
-
     axios.post('/users', {
       user: {
         email: document.getElementById("email").value,
