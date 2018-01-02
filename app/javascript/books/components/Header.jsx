@@ -25,6 +25,23 @@ class Header extends React.Component {
     })
   }
 
+  componentDidMount(){
+    that = this
+    axios.get('/pages/are_we_there_yet',{
+    })
+    .then(function(response){
+      console.log("THIS IS THE RESPONSE");
+      console.log(response);
+      console.log(response.email);
+      that.setState({
+        currentUser: response.email
+      })
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+  }
+
   updateCurrentUser(email) {
     console.log("we got to the update")
     console.log(email)
