@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 // components
 import Signup from './Signup'
@@ -8,15 +9,18 @@ import Logout from './Logout'
 
 class Header extends React.Component {
 
-  constructor(){
-    super();
-    this.state = {
-      page:"login",
-      currentUser:null
+  constructor(props){
+    super(props);
+    if (this.props.currentUser == null){
+      this.state = {
+        page:"login"
+      }
+    } else{
+      this.state = {
+        page: "edit"
+      }
     }
     this.changePage = this.changePage.bind(this);
-    this.updateCurrentUser = this.updateCurrentUser.bind(this);
-
   }
 
   changePage(newPage) {
@@ -25,22 +29,15 @@ class Header extends React.Component {
     })
   }
 
-  updateCurrentUser(email) {
-    console.log("we got to the update")
-    console.log(email)
-    this.setState({
-      currentUser: email
-    })
-  }
 
   render() {
     switch(this.state.page) {
       case "signup":
-        return <Signup changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
+        return <Signup changePage={this.changePage} updateCurrentUser={this.props.updateCurrentUser}/>
       case "login":
-        return <Login changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
+        return <Login changePage={this.changePage} updateCurrentUser={this.props.updateCurrentUser}/>
       case "edit":
-        return <Logout changePage={this.changePage} updateCurrentUser={this.updateCurrentUser}/>
+        return <Logout changePage={this.changePage} updateCurrentUser={this.props.updateCurrentUser}/>
     }
   }
 }

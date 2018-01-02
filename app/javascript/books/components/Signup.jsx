@@ -14,17 +14,18 @@ class Signup extends React.Component {
 
   handleSignup(e) {
     e.preventDefault();
-    var that = this
+    let that = this
+    let email = document.getElementById("email").value
     axios.post('/users', {
       user: {
-        email: document.getElementById("email").value,
+        email: email,
         password: document.getElementById("password").value,
         password_confirmation: document.getElementById("password_confirmation").value
       }
     })
     .then(function(response){
       that.props.changePage("edit");
-      that.props.updateCurrentUser(response.email);
+      that.props.updateCurrentUser(email);
     })
     .catch(function(error){
       console.log(error)
@@ -35,7 +36,7 @@ class Signup extends React.Component {
 
 
   render() {
-    var errorClass = this.state.signupUnsuccessful ? "" : "hidden"
+    let errorClass = this.state.signupUnsuccessful ? "" : "hidden"
     return (
       <div>
         <h2>Signup</h2>
