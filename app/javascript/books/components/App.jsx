@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // components
 import Map from './Map';
-import Header from './Header'
+import Header from './Header';
 
 
 class App extends React.Component {
@@ -24,9 +24,15 @@ class App extends React.Component {
       console.log("THIS IS THE RESPONSE");
       console.log(response);
       console.log(response.data.email);
-      that.setState({
-        currentUser: response.data.email
-      })
+      if(response.data.email){
+        that.setState({
+          currentUser: response.data.email
+        })
+      } else {
+        that.setState({
+          currentUser: null
+        })
+      }
     })
     .catch(function(error){
       console.log(error);

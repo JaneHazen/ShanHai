@@ -11,7 +11,7 @@ class Header extends React.Component {
 
   constructor(props){
     super(props);
-    if (this.props.currentUser){
+    if (this.props.currentUser == null){
       this.state = {
         page:"login"
       }
@@ -20,10 +20,7 @@ class Header extends React.Component {
         page: "edit"
       }
     }
-
     this.changePage = this.changePage.bind(this);
-
-
   }
 
   changePage(newPage) {
