@@ -6,11 +6,18 @@ class Login extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      signupUnsuccessful:false,
+      loginUnsuccessful:false,
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.changePage = this.props.changePage.bind(this);
     this.updateCurrentUser = this.props.updateCurrentUser.bind(this);
+    this.updateLoginError = this.updateLoginError.bind(this)
+  }
+
+  updateLoginError() {
+    this.setState({
+      loginUnsuccessful: true
+    });
   }
 
   handleLogin(e) {
@@ -30,6 +37,7 @@ class Login extends React.Component {
         that.props.updateCurrentUser(response.email);
       })
       .catch(function(error) {
+        that.updateLoginError();
         console.log(error);
       });
 
@@ -38,7 +46,7 @@ class Login extends React.Component {
 
 
   render() {
-    var errorClass = this.state.loginUnsuccessful ? "" : "hidden"
+    var errorClass = this.state.loginUnsuccessful ? "hidden" : ""
     return (
       <div>
         <h2>Login</h2>
