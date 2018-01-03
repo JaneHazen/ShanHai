@@ -8,8 +8,8 @@ import Popup from './Popup'
 
 class Map extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       worldData: [],
       showPopup: false,

@@ -45,20 +45,26 @@ class Login extends React.Component {
 
 
   render() {
-    let errorClass = this.state.loginUnsuccessful ? "hidden" : ""
     return (
-      <div>
+      <header style={styles.header}>
         <h2>Login</h2>
         <form>
           <input id="email" placeholder="email"/>
           <input id="password" placeholder="password"/>
           <button onClick={this.handleLogin}>Submit</button>
         </form>
-        <p className={errorClass}>There was an error with your login details</p>
         <button onClick={() => this.props.changePage("signup")}>Sign Up!</button>
-      </div>
+      </header>
     );
   };
+}
+
+const styles = {
+  header: {
+    borderBottom: '1px solid #e2e2e2',
+    padding: '10px',
+    textAlign: 'left',
+  }
 }
 
 export default Login

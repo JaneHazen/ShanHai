@@ -36,7 +36,7 @@ class Signup extends React.Component {
 
 
   render() {
-    let errorClass = this.state.signupUnsuccessful ? "" : "hidden"
+
     return (
       <div>
         <h2>Signup</h2>
@@ -46,8 +46,7 @@ class Signup extends React.Component {
           <input id="password_confirmation" placeholder="retype password"/>
           <button onClick={this.handleSignup}>Submit</button>
         </form>
-        <p className={errorClass}>There was an error with your signup details</p>
-        <button onClick={() => this.props.changePage("login")}>Login!</button>
+        <button onClick={() => this.props.changePage("login")}>Back to Login</button>
       </div>
     );
   };
