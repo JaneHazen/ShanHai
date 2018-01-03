@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @booklist.user %>
+</p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @booklist.book %>
+</p>
+
+<p>
+  <strong>Read:</strong>
+  <%= @booklist.read %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @booklist.comment %>
+</p>
+
+<%= link_to 'Edit', edit_booklist_path(@booklist) %> |
+<%= link_to 'Back', booklists_path %>

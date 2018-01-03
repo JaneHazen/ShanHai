@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :booklists
   devise_for :users, controllers: {registrations: 'registrations', sessions:'sessions'}
   get 'pages/home'
   get 'pages/are_we_there_yet'
