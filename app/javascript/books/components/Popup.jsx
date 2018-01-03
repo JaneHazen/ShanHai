@@ -1,16 +1,60 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Popup extends React.Component {
 
   constructor(props){
     super(props);
+    this.state={
+      books:[]
     }
+  }
+
+  componentWillMount(){
+    this.props.country
+  }
+
+  getBooks(){
+    let that = this
+    axios.get('/api/books', {
+    })
+    .then(function(response){
+      that.setState({
+        books:response.data
+      })
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }
+
+  renderBooks(){
+    return this.state.books.map((book, index)=>{
+      const countryUl = <ul><li>{book.country}</li></ul>
+      console.log("<3")
+      console.log(this.props.country.props.children.countryName)
+      console.log(book.country)
+      if(book.country == this.props.country.props.children.countryName){
+        return(
+          <div key={book.id}>
+            <p>{book.title}</p>
+            <p>{book.author}</p>
+          </div>
+          )
+      }
+    })
+  }
+
+  componentWillMount(){
+    this.getBooks()
+  }
 
   render() {
     return (
       <div className='popup' style={styles.popup}>
         <div className='popup_inner' style={styles.popupinner}>
-          <h1>{this.props.country.props.children}</h1>
+          <h1>{this.props.country.props.children.countryName}</h1>
+          <h3>{this.renderBooks()}</h3>
         <button onClick={this.props.closePopup}>close me</button>
         </div>
       </div>

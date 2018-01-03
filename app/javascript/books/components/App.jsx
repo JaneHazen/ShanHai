@@ -17,14 +17,11 @@ class App extends React.Component {
     this.updateCurrentUser = this.updateCurrentUser.bind(this);
   }
 
-    componentDidMount(){
+  componentDidMount(){
     let that = this
     axios.get('/pages/are_we_there_yet',{
     })
     .then(function(response){
-      console.log("THIS IS THE RESPONSE");
-      console.log(response);
-      console.log(response.data.email);
       if(response.data.email){
         that.setState({
           currentUser: response.data.email
@@ -41,8 +38,6 @@ class App extends React.Component {
   }
 
   updateCurrentUser(email) {
-    console.log("we got to the update")
-    console.log(email)
     this.setState({
       currentUser: email
     })
