@@ -207,9 +207,8 @@ class Map extends Component {
 
     return (
       <ul>
-        {countryDirectory.map(function(code, i){
+        {countryDirectory.find(function(code, i){
           if(code.countryCode === countryIndex.id){
-            console.log("I'm IN HERE" + code.countryName)
              return <li key={i}>{code.countryName}</li>
             }
         })}
@@ -221,7 +220,6 @@ class Map extends Component {
 
   handleCountryClick(countryIndex) {
     const country = this.findCountryName(this.state.worldData[countryIndex])
-    console.log("!!!!!" + country)
     this.togglePopup(country)
     console.log(`Clicked on this country ${country} country: `, this.state.worldData[countryIndex])
   }
