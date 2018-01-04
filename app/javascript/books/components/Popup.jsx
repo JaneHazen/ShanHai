@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Timestamp from 'react-timestamp';
+
 
 class Popup extends React.Component {
 
@@ -36,10 +38,13 @@ class Popup extends React.Component {
       console.log(book.country)
       if(book.country == this.props.country.props.children.countryName){
         return(
-          <div key={book.id}>
-            <p>{book.title}</p>
-            <p>{book.author}</p>
-          </div>
+          <article key={book.id} style={styles.article}>
+            <div style={styles.container}>
+              <p style={styles.articleTitle}>{book.title}</p>
+              <p style={styles.articleAuthor}>{book.author}</p>
+              <p style={styles.createdAt}><Timestamp time={book.created_at} format='full'/></p>
+            </div>
+          </article>
           )
       }
     })
@@ -53,9 +58,9 @@ class Popup extends React.Component {
     return (
       <div className='popup' style={styles.popup}>
         <div className='popup_inner' style={styles.popupinner}>
-          <h1>{this.props.country.props.children.countryName}</h1>
-          <h3>{this.renderBooks()}</h3>
-        <button onClick={this.props.closePopup}>close me</button>
+            <h2 style={styles.countryName}>{this.props.country.props.children.countryName}</h2>
+            <h3>{this.renderBooks()}</h3>
+            <button onClick={this.props.closePopup}>close me</button>
         </div>
       </div>
     );
@@ -82,6 +87,29 @@ const styles = {
     bottom: '25%',
     margin: 'auto',
     background: 'white',
+  },
+  countryName: {
+    justify: 'center',
+    fontSize:'20px'
+  },
+  article: {
+    boxShadow: '0 4px 8px 5px rgba(0,0,0,0.2)',
+    transition: '.3s'
+  },
+  container: {
+    padding:'2px 16px'
+  },
+  articleTitle: {
+    display: 'inline',
+    fontSize: '20px'
+  },
+  articleAuthor:{
+    fontSize:'15px'
+  },
+  createdAt:{
+    textAlign:'right',
+    fontSize:'10px',
+    opacity:'.5'
   }
 }
 
