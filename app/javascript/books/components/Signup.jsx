@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 class Signup extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       signupUnsuccessful:false,
     }
