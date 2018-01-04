@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get 'pages/are_we_there_yet'
   root to: "pages#home"
   namespace :api, defaults: {format: :json} do
-    resources :books, only: [:index]
+    resources :books, only: [:index, :create]
   end
 end

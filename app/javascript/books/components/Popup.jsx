@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Timestamp from 'react-timestamp';
 
-
+// components
+import NewBookForm from './NewBookForm'
 class Popup extends React.Component {
 
   constructor(props){
@@ -10,10 +11,6 @@ class Popup extends React.Component {
     this.state={
       books:[]
     }
-  }
-
-  componentWillMount(){
-    this.props.country
   }
 
   getBooks(){
@@ -31,11 +28,9 @@ class Popup extends React.Component {
   }
 
   renderBooks(){
+    let that = this
     return this.state.books.map((book, index)=>{
       const countryUl = <ul><li>{book.country}</li></ul>
-      console.log("<3")
-      console.log(this.props.country.props.children.countryName)
-      console.log(book.country)
       if(book.country == this.props.country.props.children.countryName){
         return(
           <article key={book.id} style={styles.article}>
@@ -50,6 +45,16 @@ class Popup extends React.Component {
     })
   }
 
+  renderNewBookForm(){
+    if (this.props.currentUser !== null){
+      return (
+          <div>
+            <NewBookForm currentUser = {this.props.currentUser} country={this.props.country.props.children.countryName}/>
+          </div>
+          )
+    }
+  }
+
   componentWillMount(){
     this.getBooks()
   }
@@ -59,6 +64,7 @@ class Popup extends React.Component {
       <div className='popup' style={styles.popup}>
         <div className='popup_inner' style={styles.popupinner}>
             <h2 style={styles.countryName}>{this.props.country.props.children.countryName}</h2>
+            {this.renderNewBookForm()}
             <h3>{this.renderBooks()}</h3>
             <button onClick={this.props.closePopup}>close me</button>
         </div>
