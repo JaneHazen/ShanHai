@@ -35,6 +35,7 @@ class Popup extends React.Component {
         return(
           <article key={book.id} style={styles.article}>
             <div style={styles.container}>
+              <p>{book.votes.value}</p>
               <p style={styles.articleTitle}>{book.title}</p>
               <p style={styles.articleAuthor}>{book.author}</p>
               <p style={styles.createdAt}><Timestamp time={book.created_at} format='full'/></p>
