@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20180104020616) do
   enable_extension "plpgsql"
 
   create_table "booklists", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "book_id"
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
     t.boolean "read"
     t.text "comment"
     t.datetime "created_at", null: false
@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 20180104020616) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "author"
-    t.string "title"
-    t.string "country"
+    t.string "author", null: false
+    t.string "title", null: false
+    t.string "country", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
@@ -55,10 +55,11 @@ ActiveRecord::Schema.define(version: 20180104020616) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer "value"
-    t.bigint "user_id"
-    t.string "votable_type"
-    t.bigint "votable_id"
+    t.integer "value", default: 0, null: false
+    t.boolean "upvote", null: false
+    t.bigint "user_id", null: false
+    t.string "votable_type", null: false
+    t.bigint "votable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_votes_on_user_id"

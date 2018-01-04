@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+
 class NewBookForm extends React.Component {
   constructor(props){
     super(props);
@@ -9,7 +10,7 @@ class NewBookForm extends React.Component {
       title: '',
       country: this.props.country,
       description:'',
-      user_id: null
+      user_id: null,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -59,16 +60,11 @@ class NewBookForm extends React.Component {
       console.log(response);
     })
     .catch(function(error){
-      var thisError = error
       console.log(error);
     })
   }
 
-  showErrors(){
-    if(thisError){
-      return(<p>thisError</p>)
-    }
-  }
+
 
   render(){
     return(
@@ -76,7 +72,6 @@ class NewBookForm extends React.Component {
         <fieldset>
           <label>
           <h2>Add a book</h2>
-            {this.showErrors}
             <input name="title" placeholder="title" type="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
             <input name="author" placeholder="author" type ="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
             <input name="description" placeholder="description" type="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
