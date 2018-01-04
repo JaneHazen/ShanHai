@@ -272,6 +272,7 @@ class Map extends Component {
           text='Close Me'
           country = {this.state.targetCountry}
           closePopup={this.togglePopup.bind(this)}
+          currentUser = {this.props.currentUser}
         />
         : null
       }

@@ -47,7 +47,7 @@ class App extends React.Component {
     return (
       <div>
         <Header updateCurrentUser={this.updateCurrentUser}/>
-        <Map/>
+        <Map currentUser = {this.state.currentUser}/>
       </div>
     )
   }
