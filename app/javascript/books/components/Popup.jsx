@@ -15,7 +15,6 @@ class Popup extends React.Component {
       books:[],
       user_id: null
     }
-    this.findVotes = this.findVotes.bind(this);
     this.editDelete = this.editDelete.bind(this);
   }
 
@@ -88,7 +87,6 @@ class Popup extends React.Component {
           return(
             <article key={book.id} style={styles.article}>
               <div style={styles.container}>
-                <div>{this.findVotes(book)}</div>
                 <p style={styles.articleTitle}>{book.title}</p>
                 <p style={styles.articleAuthor}>{book.author}</p>
                 <p style={styles.articleDescription}>{book.description}</p>
@@ -106,7 +104,11 @@ class Popup extends React.Component {
     if (this.props.currentUser !== null){
       return (
           <div>
-            <NewBookForm currentUser = {this.props.currentUser} country={this.props.country.props.children.countryName}/>
+            <NewBookForm
+            currentUser = {this.props.currentUser}
+            country={this.props.country.props.children.countryName}
+            getBooks = {this.getBooks()}
+            />
           </div>
           )
     }
@@ -121,7 +123,6 @@ class Popup extends React.Component {
       <div className='popup' style={styles.popup}>
         <div className='popup_inner' style={styles.popupinner}>
             <h2 style={styles.countryName}>{this.props.country.props.children.countryName}</h2>
-            <BookList data = {rows}/>
             {this.renderNewBookForm()}
             <h3 className='renderBooksClass'>{this.renderBooks()}</h3>
             <button onClick={this.props.closePopup}>close me</button>
