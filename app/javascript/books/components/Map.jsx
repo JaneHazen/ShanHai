@@ -245,6 +245,10 @@ class Map extends Component {
     })
   }
 
+  findCountriesUserHasRead(){
+
+  }
+
   render(){
 
     return(

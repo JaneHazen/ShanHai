@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Timestamp from 'react-timestamp';
+import { Panel, Button, ButtonToolbar, Modal, OverlayTrigger } from 'react-bootstrap';
 
 // components
 import NewBookForm from './NewBookForm'
+
 class Popup extends React.Component {
 
   constructor(props){
     super(props);
     this.state={
-      books:[]
+      book_id: "",
+      books:[],
+      user_id: null
     }
+    this.editDelete = this.editDelete.bind(this);
   }
 
   getBooks(){
@@ -27,30 +32,83 @@ class Popup extends React.Component {
     })
   }
 
-  renderBooks(){
+
+  componentDidMount(){
+    this.getBooks()
     let that = this
-    return this.state.books.map((book, index)=>{
-      const countryUl = <ul><li>{book.country}</li></ul>
-      if(book.country == this.props.country.props.children.countryName){
-        return(
-          <article key={book.id} style={styles.article}>
-            <div style={styles.container}>
-              <p>{book.votes.value}</p>
-              <p style={styles.articleTitle}>{book.title}</p>
-              <p style={styles.articleAuthor}>{book.author}</p>
-              <p style={styles.createdAt}><Timestamp time={book.created_at} format='full'/></p>
-            </div>
-          </article>
-          )
+    axios.get('/pages/are_we_there_yet',{
+    })
+    .then(function(response){
+      if(response.data.email){
+        that.setState({
+          user_id: response.data.id
+        })
       }
     })
+    .catch(function(error){
+      console.log(error);
+    })
+  }
+
+  editDelete(book){
+    let bindBook = this.deleteTheBook.bind(this, book)
+
+    if(this.state.user_id == book.user_id){
+      return(
+        <div>
+          <button onClick={bindBook}>Delete</button>
+        </div>
+        )
+    }
+  }
+
+  deleteTheBook(book, e) {
+    e.preventDefault();
+    console.log("HEY")
+    console.log(book)
+    let that = this
+    axios.delete(`/api/books/${book.id}`, {
+      book: book.id
+    })
+    .then(function(response){
+      that.getBooks();
+      console.log("Diditwork?")
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }
+
+  renderBooks(){
+    let that = this
+      return this.state.books.map((book, index)=>{
+        const countryUl = <ul><li>{book.country}</li></ul>
+        if(book.country == this.props.country.props.children.countryName){
+          return(
+            <article key={book.id} style={styles.article}>
+              <div style={styles.container}>
+                <p style={styles.articleTitle}>{book.title}</p>
+                <p style={styles.articleAuthor}>{book.author}</p>
+                <p style={styles.articleDescription}>{book.description}</p>
+                <p>{book.user_id}</p>
+                <div>{this.editDelete(book)}</div>
+                <p style={styles.createdAt}><Timestamp time={book.created_at} format='full'/></p>
+              </div>
+            </article>
+            )
+        }
+      })
   }
 
   renderNewBookForm(){
     if (this.props.currentUser !== null){
       return (
           <div>
-            <NewBookForm currentUser = {this.props.currentUser} country={this.props.country.props.children.countryName}/>
+            <NewBookForm
+            currentUser = {this.props.currentUser}
+            country={this.props.country.props.children.countryName}
+            getBooks = {this.getBooks()}
+            />
           </div>
           )
     }
@@ -66,7 +124,7 @@ class Popup extends React.Component {
         <div className='popup_inner' style={styles.popupinner}>
             <h2 style={styles.countryName}>{this.props.country.props.children.countryName}</h2>
             {this.renderNewBookForm()}
-            <h3>{this.renderBooks()}</h3>
+            <h3 className='renderBooksClass'>{this.renderBooks()}</h3>
             <button onClick={this.props.closePopup}>close me</button>
         </div>
       </div>
@@ -117,7 +175,11 @@ const styles = {
     textAlign:'right',
     fontSize:'10px',
     opacity:'.5'
+  },
+  articleDescription:{
+    fontSize:'10px'
   }
 }
+
 
 export default Popup

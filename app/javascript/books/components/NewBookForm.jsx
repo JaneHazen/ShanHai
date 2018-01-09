@@ -17,7 +17,22 @@ class NewBookForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  getBooks(){
+    let that = this
+    axios.get('/api/books', {
+    })
+    .then(function(response){
+      that.setState({
+        books:response.data
+      })
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }
+
   componentDidMount(){
+    this.getBooks()
     let that = this
     axios.get('/pages/are_we_there_yet',{
     })
@@ -34,8 +49,6 @@ class NewBookForm extends React.Component {
   }
 
   handleInputChange(e){
-    console.log(this.props.country)
-    console.log(this)
     let target = e.target;
     let name = target.name
     let value = target.value
@@ -57,6 +70,7 @@ class NewBookForm extends React.Component {
 
     })
     .then(function(response){
+      that.getBooks();
       console.log(response);
     })
     .catch(function(error){
