@@ -34,8 +34,6 @@ class NewBookForm extends React.Component {
   }
 
   handleInputChange(e){
-    console.log(this.props.country)
-    console.log(this)
     let target = e.target;
     let name = target.name
     let value = target.value

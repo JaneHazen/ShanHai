@@ -7,7 +7,6 @@ class Api::BooksController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:user_id])
     @book = Book.new(book_params)
     if @book.save
       render json: @book
@@ -15,6 +14,12 @@ class Api::BooksController < ApplicationController
       warden.custom_failure!
       render json: { error: 'signup error' }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    render json: @book
   end
 
   def book_params
