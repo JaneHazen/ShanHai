@@ -33,52 +33,9 @@ class Popup extends React.Component {
     })
   }
 
-  update(){
-    this.getBooks();
-    var rows = []
-    let books = this.state.books
-    for(var i=0; i < books.length; i ++){
-      rows.push(
-        <article key={books[i].id} style={styles.article}>
-            <div style={styles.container}>
-                <p style={styles.articleTitle}>{books[i].title}</p>
-                <p style={styles.articleAuthor}>{books[i].author}</p>
-            </div>
-            <div className="FullBookInfo">
-              {this.fullBookInfo(books[i])}
-            </div>
-          </article>
-
-        )
-    }
-  }
-
-  fullBookInfo(book){
-    render(){
-      return(
-        <div style={styles.container}>
-                <p style={styles.articleTitle}>{book.title}</p>
-                <p style={styles.articleAuthor}>{book.author}</p>
-                <p style={styles.articleDescription}>{book.description}</p>
-                <div>{this.editDelete(book)}</div>
-                <p style={styles.createdAt}><Timestamp time={book.created_at} format='full'/></p>
-            </div>
-        )
-    }
-  }
-
-  findVotes(book){
-    return(
-      <p>
-        {book.votes}
-      </p>
-    )
-  }
-
-
-
 
   componentDidMount(){
+    this.getBooks()
     let that = this
     axios.get('/pages/are_we_there_yet',{
     })
@@ -106,7 +63,7 @@ class Popup extends React.Component {
     }
   }
 
-    deleteTheBook(book, e) {
+  deleteTheBook(book, e) {
     e.preventDefault();
     console.log("HEY")
     console.log(book)
@@ -115,7 +72,7 @@ class Popup extends React.Component {
       book: book.id
     })
     .then(function(response){
-      that.update()
+      that.getBooks();
       console.log("Diditwork?")
     })
     .catch(function(error){
