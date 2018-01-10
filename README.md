@@ -13,6 +13,12 @@ Other people might use scratch-off maps to show the countries they have explored
 * List of books for each country 
 * Users can add or delete books to each country's booklist
 
+# To View: 
+
+Make sure Yarn is updated and nothing else is running on your localhost.
+
+$foreman start -f Procfile.dev -p 3000
+
 ![Imgur](https://i.imgur.com/LT5xdyS.png)
 
 ![Imgur](https://i.imgur.com/7MqYzaq.png)
@@ -24,8 +30,4 @@ Other people might use scratch-off maps to show the countries they have explored
 * Ruby on Rails
 * d3 
 
-# To View: 
 
-Make sure Yarn is updated and nothing else is running on your localhost.
-
-$foreman start -f Procfile.dev -p 3000
