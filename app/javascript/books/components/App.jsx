@@ -13,11 +13,14 @@ class App extends React.Component {
 
   constructor(){
     super();
+    var currentUser = localStorage.getItem( 'currentUser' ) || null;
+
     this.state = {
-      currentUser: null
+      currentUser: currentUser
     }
     this.updateCurrentUser = this.updateCurrentUser.bind(this);
   }
+
 
   componentDidMount(){
     let that = this

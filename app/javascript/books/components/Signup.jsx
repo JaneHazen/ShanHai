@@ -24,6 +24,7 @@ class Signup extends React.Component {
       }
     })
     .then(function(response){
+      localStorage.setItem('currentUser', email)
       that.props.changePage("edit");
       that.props.updateCurrentUser(email);
     })
