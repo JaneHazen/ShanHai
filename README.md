@@ -23,3 +23,9 @@ Other people might use scratch-off maps to show the countries they have explored
 * Webpacker
 * Ruby on Rails
 * d3 
+
+# To View: 
+
+Make sure Yarn is updated and nothing else is running on your localhost.
+
+$foreman start -f Procfile.dev -p 3000
