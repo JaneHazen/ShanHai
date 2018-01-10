@@ -10,7 +10,6 @@ class Login extends React.Component {
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.changePage = this.props.changePage.bind(this);
-    this.updateCurrentUser = this.props.updateCurrentUser.bind(this);
     this.updateLoginError = this.updateLoginError.bind(this)
   }
 

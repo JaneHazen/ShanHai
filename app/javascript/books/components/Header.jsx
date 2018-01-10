@@ -11,17 +11,42 @@ class Header extends React.Component {
 
   constructor(props){
     super(props);
-    if (this.props.currentUser == null){
       this.state = {
-        page:"login"
+        page:""
       }
-    } else{
-      this.state = {
-        page: "edit"
-      }
-    }
     this.changePage = this.changePage.bind(this);
   }
+
+  componentWillMount(){
+    if (this.props.currentUser == null){
+      console.log("NO USER")
+      this.setState({
+        page:"login"
+      })
+    }else{
+      console.log("USER")
+        this.setState({
+          page:"edit"
+        })
+    }
+  }
+
+
+
+  componentDidMount(){
+    if (this.props.currentUser == null){
+      console.log("NO USER")
+      this.setState({
+        page:"login"
+      })
+    }else{
+      console.log("USER")
+        this.setState({
+          page:"edit"
+        })
+    }
+  }
+
 
   changePage(newPage) {
     this.setState({
