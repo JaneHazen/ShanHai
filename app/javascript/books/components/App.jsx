@@ -19,6 +19,25 @@ class App extends React.Component {
     this.updateCurrentUser = this.updateCurrentUser.bind(this);
   }
 
+  componentDidMount(){
+    let that = this
+    axios.get('/pages/are_we_there_yet',{
+    })
+    .then(function(response){
+      if(response.data.email){
+        that.setState({
+          currentUser: response.data.email
+        })
+      } else {
+        that.setState({
+          currentUser: null
+        })
+      }
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+  }
 
 
   updateCurrentUser(email) {
@@ -31,7 +50,7 @@ class App extends React.Component {
     return (
       <div>
         <Header updateCurrentUser={this.updateCurrentUser}
-        currentUser = {this.state.currentUser}/>
+        currentUser = {this.state.currentUser} />
         <Map currentUser = {this.state.currentUser}/>
       </div>
     )

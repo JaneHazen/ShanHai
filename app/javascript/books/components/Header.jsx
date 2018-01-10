@@ -18,6 +18,7 @@ class Header extends React.Component {
   }
 
   componentWillMount(){
+    console.log(this.props)
     if (this.props.currentUser == null){
       console.log("NO USER")
       this.setState({
@@ -30,10 +31,9 @@ class Header extends React.Component {
         })
     }
   }
-
-
 
   componentDidMount(){
+    console.log(this.props)
     if (this.props.currentUser == null){
       console.log("NO USER")
       this.setState({
@@ -46,6 +46,8 @@ class Header extends React.Component {
         })
     }
   }
+
+
 
 
   changePage(newPage) {
