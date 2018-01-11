@@ -64,15 +64,12 @@ class Popup extends React.Component {
 
   deleteTheBook(book, e) {
     e.preventDefault();
-    console.log("HEY")
-    console.log(book)
     let that = this
     axios.delete(`/api/books/${book.id}`, {
       book: book.id
     })
     .then(function(response){
       that.getBooks();
-      console.log("Diditwork?")
     })
     .catch(function(error){
       console.log(error)
@@ -85,15 +82,13 @@ class Popup extends React.Component {
         const countryUl = <ul><li>{book.country}</li></ul>
         if(book.country == this.props.country.props.children.countryName){
           return(
-            <article key={book.id} style={styles.article}>
-              <div style={styles.container}>
-                <p style={styles.articleTitle}>{book.title}</p>
-                <p style={styles.articleAuthor}>{book.author}</p>
-                <p style={styles.articleDescription}>{book.description}</p>
+            <article className="popupContainer" key={book.id} style={styles.article}>
+                <p className="bookTitle">{book.title}</p>
+                <p className="bookAuthor">{book.author}</p>
+                <p className="bookDescription">{book.description}</p>
                 <p>{book.user_id}</p>
                 <div>{this.editDelete(book)}</div>
-                <p style={styles.createdAt}><Timestamp time={book.created_at} format='full'/></p>
-              </div>
+                <p className="bookCreatedAt"><Timestamp time={book.created_at} format='full'/></p>
             </article>
             )
         }
@@ -120,64 +115,15 @@ class Popup extends React.Component {
 
   render() {
     return (
-      <div className='popup' style={styles.popup}>
-        <div className='popup_inner' style={styles.popupinner}>
-            <h2 style={styles.countryName}>{this.props.country.props.children.countryName}</h2>
+      <div className='popup'>
+        <div className='popupInner' >
+            <h2 className="countryName">{this.props.country.props.children.countryName}</h2>
             {this.renderNewBookForm()}
             <h3 className='renderBooksClass'>{this.renderBooks()}</h3>
             <button onClick={this.props.closePopup}>close me</button>
         </div>
       </div>
     );
-  }
-}
-
-const styles = {
-  popup: {
-    position: 'fixed',
-    width: '100%',
-    height: '100%',
-    top: '0',
-    left: '0',
-    right: '0',
-    bottom: '0',
-    margin: 'auto',
-    backgroundColor: 'rgba(0,0,0, 0.5)',
-  },
-  popupinner: {
-    position: 'absolute',
-    left: '25%',
-    right: '25%',
-    top: '25%',
-    bottom: '25%',
-    margin: 'auto',
-    background: 'white',
-  },
-  countryName: {
-    justify: 'center',
-    fontSize:'20px'
-  },
-  article: {
-    boxShadow: '0 4px 8px 5px rgba(0,0,0,0.2)',
-    transition: '.3s'
-  },
-  container: {
-    padding:'2px 16px'
-  },
-  articleTitle: {
-    display: 'inline',
-    fontSize: '20px'
-  },
-  articleAuthor:{
-    fontSize:'15px'
-  },
-  createdAt:{
-    textAlign:'right',
-    fontSize:'10px',
-    opacity:'.5'
-  },
-  articleDescription:{
-    fontSize:'10px'
   }
 }
 
