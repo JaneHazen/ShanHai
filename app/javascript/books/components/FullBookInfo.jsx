@@ -36,13 +36,12 @@ class FullBookInfo extends React.Component {
 
   render(){
     return (
-      <div style={styles.container}>
-                <p style={styles.articleTitle}>{this.props.title}</p>
-                <p style={styles.articleAuthor}>{this.props.author}</p>
-                <p style={styles.articleDescription}>{this.props.description}</p>
+      <div className="bookInfoContainer">
+                <p  className="bookTitle" >{this.props.title}</p>
+                <p className="bookAuthor">{this.props.author}</p>
+                <p className="bookDescription">{this.props.description}</p>
                 <div>{this.editDelete(this.props.book)}</div>
-                <p style={styles.createdAt}><Timestamp time={this.props.created_at} format='full'/></p>
-
+                <p className="bookCreatedAt"><Timestamp time={this.props.created_at} format='full'/></p>
             </div>
       )
   }
@@ -78,24 +77,6 @@ const styles = {
   article: {
     boxShadow: '0 4px 8px 5px rgba(0,0,0,0.2)',
     transition: '.3s'
-  },
-  container: {
-    padding:'2px 16px'
-  },
-  articleTitle: {
-    display: 'inline',
-    fontSize: '20px'
-  },
-  articleAuthor:{
-    fontSize:'15px'
-  },
-  createdAt:{
-    textAlign:'right',
-    fontSize:'10px',
-    opacity:'.5'
-  },
-  articleDescription:{
-    fontSize:'10px'
   }
 }
 

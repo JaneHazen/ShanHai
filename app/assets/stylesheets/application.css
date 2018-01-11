@@ -26,7 +26,27 @@ header {
   color: blue !important;
 }
 
+/*FullBookInfo popup for Books*/
+.bookInfoContainer {
+  padding: 2px 16px;
+}
 
+.bookTitle {
+  display: inline,
+  font-size: 20px
+}
 
+.bookAuthor {
+  font-size: 15px;
+}
 
+.bookDescription {
+  font-size: 10px;
+}
+
+.bookCreatedAt {
+  text-align: right;
+  font-size: 10px;
+  opacity: .5;
+}
 
