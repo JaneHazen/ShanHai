@@ -27,11 +27,11 @@ class Header extends React.Component {
     if(this.props.currentUser != null){
       console.log(this.props.currentUser)
       return(
-        <Logout/>
+        <Logout updateCurrentUser={this.props.updateCurrentUser}/>
       )
     }else{
       return(
-        <Login/>
+        <Login updateCurrentUser={this.props.updateCurrentUser}/>
       )
     }
   }
