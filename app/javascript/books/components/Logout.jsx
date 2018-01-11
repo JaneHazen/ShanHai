@@ -13,10 +13,9 @@ class Logout extends React.Component {
     let that = this
     let email = this.props.currentUser
     axios.delete('/users/sign_out', {
+      email
     })
     .then(function(response){
-      localStorage.removeItem('currentUser')
-      that.props.changePage("login")
     })
     .catch(function(error){
       console.log(error)

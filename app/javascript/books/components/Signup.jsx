@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
 
 class Signup extends React.Component {
   constructor(props){
@@ -24,8 +26,6 @@ class Signup extends React.Component {
       }
     })
     .then(function(response){
-      localStorage.setItem('currentUser', email)
-      that.props.changePage("edit");
       that.props.updateCurrentUser(email);
     })
     .catch(function(error){
@@ -47,7 +47,8 @@ class Signup extends React.Component {
           <input id="password_confirmation" placeholder="retype password"/>
           <button onClick={this.handleSignup}>Submit</button>
         </form>
-        <button onClick={() => this.props.changePage("login")}>Back to Login</button>
+        <Link to="/"><button>Back to Login</button></Link>
+
       </div>
     );
   };
