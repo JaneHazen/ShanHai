@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :books, only: [:index, :create, :destroy]
   end
+  get '*path', to: 'pages#home'
 end

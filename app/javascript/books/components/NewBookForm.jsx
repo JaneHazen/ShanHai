@@ -71,6 +71,7 @@ class NewBookForm extends React.Component {
     })
     .then(function(response){
       that.getBooks();
+
       console.log(response);
     })
     .catch(function(error){

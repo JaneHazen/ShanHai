@@ -1,11 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+import {BrowserRouter, Route} from 'react-router-dom';
+
 import '../application.css';
 
 
 // components
 import Map from './Map';
 import Header from './Header';
+import Signup from './Signup'
+import Login from './Login'
+import Logout from './Logout'
 
 
 
@@ -13,10 +18,8 @@ class App extends React.Component {
 
   constructor(){
     super();
-    var currentUser = localStorage.getItem( 'currentUser' ) || null;
-
     this.state = {
-      currentUser: currentUser
+      currentUser: null
     }
     this.updateCurrentUser = this.updateCurrentUser.bind(this);
   }
@@ -49,13 +52,29 @@ class App extends React.Component {
     })
   }
 
+
   render(){
     return (
-      <div>
-        <Header updateCurrentUser={this.updateCurrentUser}
-        currentUser = {this.state.currentUser} />
-        <Map currentUser = {this.state.currentUser}/>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" render={(props) => (
+              <Header {...props}
+                component={Header}
+                currentUser={this.state.currentUser}
+                updateCurrentUser={this.updateCurrentUser}
+              />
+          )}/>
+          <Route exact path="/signup" render={(props) => (
+              <Signup {...props}
+                component={Signup}
+                currentUser={this.state.currentUser}
+                updateCurrentUser={this.updateCurrentUser}
+              />
+          )}/>
+          <Route exact path="/userhome" component={Logout} />
+          <Map currentUser = {this.state.currentUser}/>
+        </div>
+      </BrowserRouter>
     )
   }
 
