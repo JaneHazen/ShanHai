@@ -30,7 +30,11 @@ class FullBookInfo extends React.Component {
 
   editDelete(book){
     let bindBook = this.deleteTheBook.bind(this, book)
-    if this.state.user_id ==
+    if (this.state.user_id != null){
+      return (
+        <button onClick = {this.bindBook}>Delete</button>
+        )
+    }
   }
 
 
