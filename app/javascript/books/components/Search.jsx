@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './Header';
 
+import Searchbar from './containers/searchbar';
+
 
 class Search extends React.Component {
 
@@ -11,7 +13,7 @@ class Search extends React.Component {
             currentUser={this.props.currentUser}
             updateCurrentUser={this.props.updateCurrentUser}
           />
-        Search
+          <Searchbar/>
       </div>
       )
   }
