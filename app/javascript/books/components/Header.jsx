@@ -17,7 +17,6 @@ class Header extends React.Component {
 
   renderNavBar(){
     if(this.props.currentUser != null){
-      console.log(this.props.currentUser)
       return(
         <Logout updateCurrentUser={this.props.updateCurrentUser}/>
       )
@@ -31,18 +30,9 @@ class Header extends React.Component {
 
   render() {
     return(
-      <nav className="navbar navbar-inverse" style={{backgroundColor: "#efefef"}}>
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <div className="navbar-brand"><a href="/">ShanHai</a></div>
-          </div>
-          <ul class="nav navbar-nav">
-
-            <li><Link to="/About">About</Link></li>
+      <div>
             {this.renderNavBar()}
-          </ul>
-        </div>
-      </nav>
+      </div>
       )
   }
 }
