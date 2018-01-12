@@ -39,17 +39,30 @@ class Signup extends React.Component {
   render() {
 
     return (
-      <div>
-        <h2>Signup</h2>
-        <form>
-          <input id="email" placeholder="email"/>
-          <input id="password" placeholder="password"/>
-          <input id="password_confirmation" placeholder="retype password"/>
-          <button onClick={this.handleSignup}>Submit</button>
-        </form>
-        <Link to="/"><button>Back to Login</button></Link>
-
-      </div>
+      <nav className="navbar navbar-inverse" style={{backgroundColor: "#efefef"}}>
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <div className="navbar-brand"><a href="/">ShanHai</a></div>
+          </div>
+          <ul class="nav navbar-nav">
+            <li>
+              <form className="navbar-form navbar-right" role="search">
+                  <div className="form-group">
+                    <input className="form-control" id="email" placeholder="email"/>
+                  </div>
+                  <div className="form-group">
+                    <input className="form-control" id="password" placeholder="password"/>
+                  </div>
+                  <div className="form-group">
+                    <input className="form-control" id="password_confirmation" placeholder="retype password"/>
+                  </div>
+                    <button className="btn btn-default" onClick={this.handleSignup}>Submit</button>
+              </form>
+            </li>
+            <li><Link to="/"><button>Back to Login</button></Link></li>
+          </ul>
+        </div>
+      </nav>
     );
   };
 };

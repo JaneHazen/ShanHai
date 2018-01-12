@@ -5,11 +5,12 @@ import {BrowserRouter, Route} from 'react-router-dom';
 
 
 // components
-import Map from './Map';
 import Header from './Header';
+import Main from './Main';
 import Signup from './Signup'
 import Login from './Login'
 import Logout from './Logout'
+import About from './About'
 
 
 
@@ -57,8 +58,8 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <Route exact path="/" render={(props) => (
-              <Header {...props}
-                component={Header}
+              <Main {...props}
+                component={Main}
                 currentUser={this.state.currentUser}
                 updateCurrentUser={this.updateCurrentUser}
               />
@@ -70,8 +71,9 @@ class App extends React.Component {
                 updateCurrentUser={this.updateCurrentUser}
               />
           )}/>
+          <Route exact path="/about" component={About} />
           <Route exact path="/userhome" component={Logout} />
-          <Map currentUser = {this.state.currentUser}/>
+
         </div>
       </BrowserRouter>
     )

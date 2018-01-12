@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Timestamp from 'react-timestamp';
-import { Panel, Button, ButtonToolbar, Modal, OverlayTrigger } from 'react-bootstrap';
 
 // components
 import NewBookForm from './NewBookForm'
@@ -56,7 +55,7 @@ class Popup extends React.Component {
     if(this.state.user_id == book.user_id){
       return(
         <div>
-          <button onClick={bindBook}>Delete</button>
+          <button className="btn btn-primary" onClick={bindBook}>Delete</button>
         </div>
         )
     }
@@ -120,7 +119,7 @@ class Popup extends React.Component {
             <h2 className="countryName">{this.props.country.props.children.countryName}</h2>
             {this.renderNewBookForm()}
             <h3 className='renderBooksClass'>{this.renderBooks()}</h3>
-            <button onClick={this.props.closePopup}>close me</button>
+            <button  className="btn btn-primary" onClick={this.props.closePopup}>close me</button>
         </div>
       </div>
     );
