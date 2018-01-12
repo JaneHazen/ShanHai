@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+
 
 import axios from 'axios';
 
@@ -46,7 +48,7 @@ class Login extends React.Component {
   render() {
     return (
       <header style={styles.header}>
-        <h2>Login</h2>
+        <h2 className="container">Login</h2>
         <form>
           <input id="email" placeholder="email"/>
           <input id="password" placeholder="password"/>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Timestamp from 'react-timestamp';
+import 'bootstrap/dist/css/bootstrap.css'
 import { Panel, Button, ButtonToolbar, Modal, OverlayTrigger } from 'react-bootstrap';
 
 // components

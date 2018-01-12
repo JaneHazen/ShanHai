@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css'
+
 
 class Logout extends React.Component {
 
@@ -24,7 +26,7 @@ class Logout extends React.Component {
 
   render() {
     return (
-      <button onClick={this.handleLogout}>Sign Out</button>
+      <button className="btn btn-primary" onClick={this.handleLogout}>Sign Out</button>
     );
   };
 }

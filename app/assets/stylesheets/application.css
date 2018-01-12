@@ -16,6 +16,7 @@
 
 
 
+
 .flexbox-container {
   display: -ms-flex;
   display: -webkit-flex;
@@ -59,7 +60,7 @@ header {
 .popupContainer {
   box-shadow: 0 4px 8px 5px rgba(0,0,0,0.2),
     transition: .3s,
-    padding: 2px 16px;
+    padding: 2px, 16px;
 }
 
 .bookInfoContainer {
@@ -84,4 +85,3 @@ header {
   font-size: 10px;
   opacity: .5;
 }
-
