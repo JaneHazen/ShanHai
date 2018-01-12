@@ -26,7 +26,9 @@ class Logout extends React.Component {
 
   render() {
     return (
-      <button className="btn btn-primary" onClick={this.handleLogout}>Sign Out</button>
+      <div >
+        <button className="btn navbar-btn" onClick={this.handleLogout}>Sign Out</button>
+      </div>
     );
   };
 }

@@ -9,19 +9,11 @@ import Logout from './Logout'
 
 
 
-
-
 class Header extends React.Component {
 
   constructor(props){
     super(props);
   }
-
-  componentDidMount(){
-    console.log("HEY")
-    console.log(this.props.currentUser)
-  }
-
 
   renderNavBar(){
     if(this.props.currentUser != null){
@@ -39,9 +31,18 @@ class Header extends React.Component {
 
   render() {
     return(
-        <div>
-        {this.renderNavBar()}
+      <nav className="navbar navbar-inverse" style={{backgroundColor: "#efefef"}}>
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <div className="navbar-brand"><a href="/">ShanHai</a></div>
+          </div>
+          <ul class="nav navbar-nav">
+
+            <li><Link to="/About">About</Link></li>
+            {this.renderNavBar()}
+          </ul>
         </div>
+      </nav>
       )
   }
 }

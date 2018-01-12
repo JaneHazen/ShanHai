@@ -5,6 +5,8 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 import axios from 'axios';
 
+
+
 class Login extends React.Component {
 
   constructor(props){
@@ -47,25 +49,21 @@ class Login extends React.Component {
 
   render() {
     return (
-      <header style={styles.header}>
-        <h2 className="container">Login</h2>
-        <form>
-          <input id="email" placeholder="email"/>
-          <input id="password" placeholder="password"/>
-          <button onClick={this.handleLogin}>Submit</button>
+      <li >
+        <form className="navbar-form navbar-right" role="search">
+            <div className="form-group">
+              <input className="form-control" id="email" placeholder="email"/>
+            </div>
+            <div className="form-group">
+              <input id="password" placeholder="password" type="password" className="form-control"/>
+            </div>
+              <button className="btn btn-default" onClick={this.handleLogin}>Submit</button>
         </form>
-       <Link to="/signup"><button>Sign Up!</button></Link>
-      </header>
+      </li>
     );
   };
 }
 
-const styles = {
-  header: {
-    borderBottom: '1px solid #e2e2e2',
-    padding: '10px',
-    textAlign: 'left',
-  }
-}
+
 
 export default Login
