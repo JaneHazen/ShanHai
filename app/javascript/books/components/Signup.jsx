@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Map from './Map';
+
 
 
 class Signup extends React.Component {
@@ -11,8 +13,6 @@ class Signup extends React.Component {
     }
     this.handleSignup = this.handleSignup.bind(this);
   }
-
-
 
   handleSignup(e) {
     e.preventDefault();
@@ -39,30 +39,35 @@ class Signup extends React.Component {
   render() {
 
     return (
-      <nav className="navbar navbar-inverse" style={{backgroundColor: "#efefef"}}>
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <div className="navbar-brand"><a href="/">ShanHai</a></div>
+      <div>
+        <nav className="navbar navbar-inverse" style={{backgroundColor: "#efefef"}}>
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <div className="navbar-brand"><a href="/">ShanHai</a></div>
+            </div>
+            <ul className="nav navbar-nav">
+              <li><Link to="/About">About</Link></li>
+              <li><Link to="/Search">Search</Link></li>
+              <li><Link to="/">Back to Login</Link></li>
+              <li>
+                <form className="navbar-form navbar-right" role="search">
+                    <div className="form-group">
+                      <input className="form-control" id="email" placeholder="email"/>
+                    </div>
+                    <div className="form-group">
+                      <input className="form-control" id="password" placeholder="password"/>
+                    </div>
+                    <div className="form-group">
+                      <input className="form-control" id="password_confirmation" placeholder="retype password"/>
+                    </div>
+                      <button className="btn btn-default" onClick={this.handleSignup}>Submit</button>
+                </form>
+              </li>
+            </ul>
           </div>
-          <ul class="nav navbar-nav">
-            <li>
-              <form className="navbar-form navbar-right" role="search">
-                  <div className="form-group">
-                    <input className="form-control" id="email" placeholder="email"/>
-                  </div>
-                  <div className="form-group">
-                    <input className="form-control" id="password" placeholder="password"/>
-                  </div>
-                  <div className="form-group">
-                    <input className="form-control" id="password_confirmation" placeholder="retype password"/>
-                  </div>
-                    <button className="btn btn-default" onClick={this.handleSignup}>Submit</button>
-              </form>
-            </li>
-            <li><Link to="/"><button>Back to Login</button></Link></li>
-          </ul>
-        </div>
-      </nav>
+        </nav>
+        <Map/>
+      </div>
     );
   };
 };

@@ -10,7 +10,6 @@ class Popup extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      book_id: "",
       books:[],
       user_id: null
     }
@@ -81,14 +80,16 @@ class Popup extends React.Component {
         const countryUl = <ul><li>{book.country}</li></ul>
         if(book.country == this.props.country.props.children.countryName){
           return(
-            <article className="popupContainer" key={book.id} style={styles.article}>
-                <p className="bookTitle">{book.title}</p>
-                <p className="bookAuthor">{book.author}</p>
-                <p className="bookDescription">{book.description}</p>
-                <p>{book.user_id}</p>
-                <div>{this.editDelete(book)}</div>
-                <p className="bookCreatedAt"><Timestamp time={book.created_at} format='full'/></p>
-            </article>
+            <li key={book.id} className="booksLi">
+              <article className="popupContainer" key={book.id}>
+                  <p className="bookTitle">{book.title}</p>
+                  <p className="bookAuthor">{book.author}</p>
+                  <p className="bookDescription">{book.description}</p>
+                  <p>{book.user_id}</p>
+                  <div>{this.editDelete(book)}</div>
+                  <p className="bookCreatedAt"><Timestamp time={book.created_at} format='full'/></p>
+              </article>
+            </li>
             )
         }
       })
@@ -118,7 +119,9 @@ class Popup extends React.Component {
         <div className='popupInner' >
             <h2 className="countryName">{this.props.country.props.children.countryName}</h2>
             {this.renderNewBookForm()}
-            <h3 className='renderBooksClass'>{this.renderBooks()}</h3>
+            <ul className="booksUl">
+              {this.renderBooks()}
+            </ul>
             <button  className="btn btn-primary" onClick={this.props.closePopup}>close me</button>
         </div>
       </div>

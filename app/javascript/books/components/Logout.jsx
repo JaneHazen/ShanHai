@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.css'
 
 
@@ -18,6 +20,7 @@ class Logout extends React.Component {
       email
     })
     .then(function(response){
+      that.props.updateCurrentUser(null);
     })
     .catch(function(error){
       console.log(error)
@@ -26,9 +29,21 @@ class Logout extends React.Component {
 
   render() {
     return (
-      <div >
-        <button className="btn navbar-btn" onClick={this.handleLogout}>Sign Out</button>
-      </div>
+      <nav className="navbar navbar-inverse" style={{backgroundColor: "#efefef"}}>
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <div className="navbar-brand"><a href="/">ShanHai</a></div>
+          </div>
+          <ul className="nav navbar-nav">
+
+            <li><Link to="/About">About</Link></li>
+            <li><Link to="/Search">Search</Link></li>
+            <li>
+              <button className="btn navbar-btn" onClick={this.handleLogout}>Sign Out</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
     );
   };
 }

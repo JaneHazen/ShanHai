@@ -11,6 +11,7 @@ import Signup from './Signup'
 import Login from './Login'
 import Logout from './Logout'
 import About from './About'
+import Search from './Search'
 
 
 
@@ -71,9 +72,18 @@ class App extends React.Component {
                 updateCurrentUser={this.updateCurrentUser}
               />
           )}/>
-          <Route exact path="/about" component={About} />
-          <Route exact path="/userhome" component={Logout} />
-
+          <Route exact path="/about" render={(props) => (
+              <About {...props}
+                component={About}
+                currentUser={this.state.currentUser}
+              />
+          )}/>
+          <Route exact path="/search" render={(props) => (
+              <Search {...props}
+                component={Search}
+                currentUser={this.state.currentUser}
+              />
+          )}/>
         </div>
       </BrowserRouter>
     )

@@ -15,8 +15,6 @@
  */
 
 
-
-
 .flexbox-container {
   display: -ms-flex;
   display: -webkit-flex;
@@ -57,10 +55,40 @@ header {
 }
 
 /*RENDER BOOKS IN POPUP*/
+
+.booksUl {
+  margin:0;
+  padding:0;
+}
+
+.booksLi {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #d3d3d3;
+  font-size: 18px;
+  transition: 0.2s;
+
+    /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.booksLi:nth-child(odd) {
+    background: #eee;
+}
+
+.booksLi:hover {
+    background: #ddd;
+}
+
 .popupContainer {
   box-shadow: 0 4px 8px 5px rgba(0,0,0,0.2),
     transition: .3s,
     padding: 2px, 16px;
+  box-sizing: border-box;
 }
 
 .bookInfoContainer {
