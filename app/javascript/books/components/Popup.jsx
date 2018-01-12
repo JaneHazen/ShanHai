@@ -117,12 +117,12 @@ class Popup extends React.Component {
     return (
       <div className='popup'>
         <div className='popupInner' >
+          <button className="close" aria-label="Close" onClick={this.props.closePopup}><span aria-hidden="true">&times;</span></button>
             <h2 className="countryName">{this.props.country.props.children.countryName}</h2>
             {this.renderNewBookForm()}
             <ul className="booksUl">
               {this.renderBooks()}
             </ul>
-            <button  className="btn btn-primary" onClick={this.props.closePopup}>close me</button>
         </div>
       </div>
     );
