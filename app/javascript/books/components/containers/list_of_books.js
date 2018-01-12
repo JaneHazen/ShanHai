@@ -7,7 +7,7 @@ class ListOfBooks extends Component {
         if(list){
             return list.map((item)=>{
                 return(
-                    <div className="card">
+                    <div key={item.id} className="card">
                         <div className="left">
                         </div>
                         <div className="right">
