@@ -1,7 +1,9 @@
 import React from 'react';
+
 import Header from './Header';
 
 import Searchbar from './containers/searchbar';
+import ListOfBooks from './containers/list_of_books'
 
 
 class Search extends React.Component {
@@ -12,8 +14,9 @@ class Search extends React.Component {
         <Header
             currentUser={this.props.currentUser}
             updateCurrentUser={this.props.updateCurrentUser}
-          />
-          <Searchbar/>
+        />
+        <Searchbar/>
+        <ListOfBooks/>
       </div>
       )
   }

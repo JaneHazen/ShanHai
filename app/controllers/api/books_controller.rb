@@ -2,6 +2,7 @@ class Api::BooksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
+    p "HEYO" * 100
     @books = Book.all
     render json: @books
   end
