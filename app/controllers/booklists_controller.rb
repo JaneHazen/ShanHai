@@ -4,7 +4,9 @@ class BooklistsController < ApplicationController
   # GET /booklists
   # GET /booklists.json
   def index
+    p "INDEX" * 100
     @booklists = Booklist.all
+    render json: @booklists
   end
 
   # GET /booklists/1
@@ -61,7 +63,6 @@ class BooklistsController < ApplicationController
     end
   end
 
-  private
     # Use callbacks to share common setup or constraints between actions.
     def set_booklist
       @booklist = Booklist.find(params[:id])

@@ -1,25 +1,18 @@
 class Api::BooksController < ApplicationController
 
   def index
-    p "HEYO" * 100
-    p params
     @books = Book.all
-    p "@BOOKS:"
-    p @books
     render json: @books
   end
 
   def country
     @books = Book.where(country: params[:country])
-    p "@BOOKS:"
-    p @books
+
     render json: @books
   end
 
   def book_id
-    p params
     @book = Book.find(params[:id])
-    p @book
     render json: @book
   end
 

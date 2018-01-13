@@ -75,12 +75,11 @@ class Popup extends React.Component {
   }
 
   renderBooks(){
-    let that = this
       return this.state.books.map((book, index)=>{
         const countryUl = <ul><li>{book.country}</li></ul>
         if(book.country == this.props.country.props.children.countryName){
           return(
-            <li key={book.id} className="booksLi">
+            <li key={book.id} className="jumbotron">
               <article className="popupContainer" key={book.id}>
                   <p className="bookTitle">{book.title}</p>
                   <p className="bookAuthor">{book.author}</p>
@@ -109,9 +108,7 @@ class Popup extends React.Component {
     }
   }
 
-  componentWillMount(){
-    this.getBooks()
-  }
+
 
   render() {
     return (
