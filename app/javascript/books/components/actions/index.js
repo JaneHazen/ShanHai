@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export function getBooks(keyword){
-  const request = axios.get('/api/books', {
+  const request = axios.get('/api/books/country', {
       params: {
         country: keyword
       }
