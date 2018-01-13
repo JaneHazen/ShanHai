@@ -2,15 +2,18 @@ import axios from 'axios';
 
 export function getBooks(keyword){
   const request = axios.get('/api/books', {
+      book: {
+        country: keyword
+      }
     })
     .then(function(response){
-      console.log(response.data)
-      response.data
+      return response.data
     })
     .catch(function(error){
       console.log(error)
     });
 
+    console.log("KEYWORD IN  ACTION:", keyword)
   return {
     type: 'SEARCH_BOOKS',
     payload:request
@@ -20,10 +23,10 @@ export function getBooks(keyword){
 
 export function bookDetail(id){
   const request = axios.get('/api/books', {
+
     })
     .then(function(response){
-      console.log(response.data)
-      response.data
+      return response.data
     })
     .catch(function(error){
       console.log(error)

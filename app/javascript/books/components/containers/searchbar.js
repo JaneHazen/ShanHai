@@ -14,6 +14,7 @@ class Searchbar extends Component {
 
     searchBooks = (event) =>{
         event.preventDefault();
+        console.log("keyword:", this.state.keyword)
         this.props.getBooks(this.state.keyword)
     }
 
@@ -24,7 +25,8 @@ class Searchbar extends Component {
     }
 
     componentDidMount(){
-        console.log(this.state)
+        console.log("keyword")
+        console.log(this.state.keyword)
     }
 
     render() {

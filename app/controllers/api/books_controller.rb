@@ -1,9 +1,9 @@
 class Api::BooksController < ApplicationController
-  skip_before_action :verify_authenticity_token
 
   def index
     p "HEYO" * 100
-    @books = Book.all
+    p params
+    @books = Book.find_by(country: book_params[:country])
     render json: @books
   end
 
@@ -24,6 +24,8 @@ class Api::BooksController < ApplicationController
   end
 
   def book_params
+     p "*" * 100
+     p params
        params.require(:book).permit(:author, :title, :country, :description, :user_id)
     end
 end
