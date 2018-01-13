@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Map from './Map';
+import Footer from './Footer';
 
 
 
@@ -70,6 +71,7 @@ class Signup extends React.Component {
           </div>
         </nav>
         <Map/>
+        <Footer />
       </div>
     );
   };
