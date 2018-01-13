@@ -19,9 +19,9 @@ Make sure Yarn is updated and nothing else is running on your localhost.
 
 $foreman start -f Procfile.dev -p 3000
 
-![Imgur](https://i.imgur.com/LT5xdyS.png)
+![Imgur](https://i.imgur.com/7sKaE5h.png)
 
-![Imgur](https://i.imgur.com/7MqYzaq.png)
+![Imgur](https://i.imgur.com/Pvj8bsD.png)
 
 # Tech Stack
 
