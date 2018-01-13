@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Timestamp from 'react-timestamp';
 
 
@@ -10,18 +11,20 @@ class ListOfBooks extends Component {
             console.log("LIST", list)
             return list.map((item)=>{
                 return(
-                    <li key={item.id} className="booksLi">
-                        <div >
-                            <article className="popupContainer" key={item.id}>
-                                <p className="bookTitle">{item.title}</p>
-                                <p className="bookAuthor">{item.author}</p>
-                                <p className="bookDescription">{item.description}</p>
-                                <p>{item.user_id}</p>
-                                <p className="bookCreatedAt"><Timestamp time={item.created_at} format='full'/></p>
-                            </article>
+                    <Link to={`/books/${item.id}`} key={item.id} >
+                        <li className="booksLi">
+                            <div >
+                                <article className="popupContainer" key={item.id}>
+                                    <p className="bookTitle">{item.title}</p>
+                                    <p className="bookAuthor">{item.author}</p>
+                                    <p className="bookDescription">{item.description}</p>
+                                    <p>{item.user_id}</p>
+                                    <p className="bookCreatedAt"><Timestamp time={item.created_at} format='full'/></p>
+                                </article>
 
-                        </div>
-                    </li>
+                            </div>
+                        </li>
+                    </Link>
                 )
             })
         }

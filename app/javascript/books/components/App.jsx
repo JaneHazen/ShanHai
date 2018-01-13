@@ -12,6 +12,7 @@ import Login from './Login'
 import Logout from './Logout'
 import About from './About'
 import Search from './Search'
+import Book from './containers/book'
 
 
 
@@ -84,6 +85,12 @@ class App extends React.Component {
                 currentUser={this.state.currentUser}
               />
           )}/>
+          <Route exact path="/books/:id" render = {(props) =>(
+              <Book {...props}
+                component={Book}
+                currentUser={this.state.currentUser}
+              />
+            )}/>
         </div>
       </BrowserRouter>
     )
