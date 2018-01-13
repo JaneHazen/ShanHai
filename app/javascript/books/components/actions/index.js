@@ -22,8 +22,10 @@ export function getBooks(keyword){
 
 
 export function bookDetail(id){
-  const request = axios.get('/api/books', {
-
+  const request = axios.get('/api/books/book_id', {
+      params: {
+        id: id
+      }
     })
     .then(function(response){
       return response.data

@@ -2,10 +2,15 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bookDetail, clearDetail} from '../actions';
 import {bindActionCreators} from 'redux';
+import Timestamp from 'react-timestamp';
+
+
+import Header from '../Header';
+
 
 class Book extends Component {
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.bookDetail(this.props.match.params.id)
   }
 
@@ -15,24 +20,27 @@ class Book extends Component {
 
   renderDetail = ({detail}) => {
     if(detail){
-      return detail.map((book) => {
         return (
-            <div key={book.id} className="book_detail">
-              <div className="detailed_book">
-                {book.title}
-              </div>
-              <div className="detailed_answer">
-                {book.author}
-              </div>
-            </div>
+            <div key={detail.id} className="book_detail">
+              <article className="popupContainer" key={detail.id}>
+                <p className="bookTitle">{detail.title}</p>
+                <p className="bookAuthor">{detail.author}</p>
+                <p className="bookDescription">{detail.description}</p>
+                <p>{detail.user_id}</p>
+                <p className="bookCreatedAt"><Timestamp time={detail.created_at} format='full'/></p>
+              </article>
+           </div>
           )
-      })
     }
   }
 
   render(){
     return(
         <div>
+          <Header
+            currentUser={this.props.currentUser}
+            updateCurrentUser={this.props.updateCurrentUser}
+          />
           {this.renderDetail(this.props.books)}
         </div>
       )

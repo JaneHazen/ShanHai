@@ -10,12 +10,17 @@ class Api::BooksController < ApplicationController
   end
 
   def country
-    p "HEYO" * 100
-    p params
     @books = Book.where(country: params[:country])
     p "@BOOKS:"
     p @books
     render json: @books
+  end
+
+  def book_id
+    p params
+    @book = Book.find(params[:id])
+    p @book
+    render json: @book
   end
 
   def create
