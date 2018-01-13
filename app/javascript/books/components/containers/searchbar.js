@@ -7,14 +7,14 @@ import { bindActionCreators } from 'redux';
 class Searchbar extends Component {
     constructor(props){
         super(props)
-
         this.state = {
             keyword:''
         }
     }
 
-    searchBooks= (event) =>{
+    searchBooks = (event) =>{
         event.preventDefault();
+        console.log("keyword:", this.state.keyword)
         this.props.getBooks(this.state.keyword)
     }
 
@@ -25,7 +25,8 @@ class Searchbar extends Component {
     }
 
     componentDidMount(){
-        console.log(this.state)
+        console.log("keyword")
+        console.log(this.state.keyword)
     }
 
     render() {
@@ -40,7 +41,7 @@ class Searchbar extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({getBooks:getBooks}, dispatch);
+    return bindActionCreators({getBooks}, dispatch);
 }
 
-export default connect(null,mapDispatchToProps)(Searchbar)
+export default connect(null, mapDispatchToProps)(Searchbar)
