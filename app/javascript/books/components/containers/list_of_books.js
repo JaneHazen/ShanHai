@@ -5,6 +5,7 @@ class ListOfBooks extends Component {
 
     listOfBooks = ({list}) =>{
         if(list){
+            console.log("LIST", list)
             return list.map((item)=>{
                 return(
                     <div key={item.id} className="card">

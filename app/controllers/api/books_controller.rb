@@ -3,7 +3,9 @@ class Api::BooksController < ApplicationController
   def index
     p "HEYO" * 100
     p params
-    @books = Book.find_by(country: book_params[:country])
+    @books = Book.where(country: params[:country])
+    p "@BOOKS:"
+    p @books
     render json: @books
   end
 
