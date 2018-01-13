@@ -17,6 +17,7 @@ class Map extends Component {
       targetCountry: []
     }
     this.handleCountryClick = this.handleCountryClick.bind(this)
+    this.handleColorChange = this.handleColorChange.bind(this)
   }
 
   togglePopup(country){
@@ -51,6 +52,15 @@ class Map extends Component {
   handleCountryClick(countryIndex) {
     const country = this.findCountryName(this.state.worldData[countryIndex])
     this.togglePopup(country)
+  }
+
+  handleColorChange(countryIndex) {
+    const colors = `rgba(38,50,56, ${1/this.state.worldData.length * countryIndex})`
+    if(this.props.currentUser != null) {
+      return "red"
+    }else {
+      return colors
+    }
   }
 
   projection() {
@@ -88,7 +98,7 @@ class Map extends Component {
                 d = { geoPath().projection(this.projection())(d) }
                 className="country"
                 onClick = { () => this.handleCountryClick(i)}
-                fill= {`rgba(38,50,56, ${1/this.state.worldData.length * i})`}
+                fill= {`${this.handleColorChange(i)}`}
                 stroke= "#FFFFFF"
                 strokeWidth= { 0.5}
               />
