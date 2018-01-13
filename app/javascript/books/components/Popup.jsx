@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Timestamp from 'react-timestamp';
+import { Link } from 'react-router-dom';
+
 
 // components
 import NewBookForm from './NewBookForm'
@@ -79,16 +81,18 @@ class Popup extends React.Component {
         const countryUl = <ul><li>{book.country}</li></ul>
         if(book.country == this.props.country.props.children.countryName){
           return(
-            <li key={book.id} className="jumbotron">
-              <article className="popupContainer" key={book.id}>
-                  <p className="bookTitle">{book.title}</p>
-                  <p className="bookAuthor">{book.author}</p>
-                  <p className="bookDescription">{book.description}</p>
-                  <p>{book.user_id}</p>
-                  <div>{this.editDelete(book)}</div>
-                  <p className="bookCreatedAt"><Timestamp time={book.created_at} format='full'/></p>
-              </article>
-            </li>
+            <Link to={`/books/${book.id}`} key={book.id} >
+              <li className="jumbotron">
+                <article className="popupContainer" key={book.id}>
+                    <p className="bookTitle">{book.title}</p>
+                    <p className="bookAuthor">{book.author}</p>
+                    <p className="bookDescription">{book.description}</p>
+                    <p>{book.user_id}</p>
+                    <div>{this.editDelete(book)}</div>
+                    <p className="bookCreatedAt"><Timestamp time={book.created_at} format='full'/></p>
+                </article>
+              </li>
+            </Link>
             )
         }
       })
