@@ -15,7 +15,8 @@ class Search extends React.Component {
             currentUser={this.props.currentUser}
             updateCurrentUser={this.props.updateCurrentUser}
         />
-        <Searchbar/>
+        <h4>Search Books By Country:</h4> <Searchbar/>
+        <br/>
         <ListOfBooks/>
       </div>
       )

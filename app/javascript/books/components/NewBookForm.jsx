@@ -86,10 +86,10 @@ class NewBookForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <fieldset>
           <label>
-          <h2>Add a book</h2>
+          <h3>Add a book</h3>
             <input name="title" placeholder="title" type="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
             <input name="author" placeholder="author" type ="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
-            <input name="description" placeholder="description" type="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
+            <textarea name="description" placeholder="description" type="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
             <input type="submit" onChange={this.handleSubmit} />
           </label>
         </fieldset>

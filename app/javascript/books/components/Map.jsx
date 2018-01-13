@@ -79,7 +79,7 @@ class Map extends Component {
 
     return(
       <div>
-      <svg width={800} height={450} viewBox="0 0 800 450">
+      <svg width={800} height={450} viewBox="0 0 800 450" className="daMap">
         <g className="countries">
           {
             this.state.worldData.map((d, i)=> (
