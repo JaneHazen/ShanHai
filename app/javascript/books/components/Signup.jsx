@@ -21,12 +21,13 @@ class Signup extends React.Component {
     axios.post('/users', {
       user: {
         email: email,
+        username: document.getElementById("username").value,
         password: document.getElementById("password").value,
         password_confirmation: document.getElementById("password_confirmation").value
       }
     })
     .then(function(response){
-      that.props.updateCurrentUser(email);
+      that.props.updateCurrentUser(username);
     })
     .catch(function(error){
       console.log(error)
@@ -47,18 +48,20 @@ class Signup extends React.Component {
             </div>
             <ul className="nav navbar-nav">
               <li><Link to="/About">About</Link></li>
-              <li><Link to="/Search">Search</Link></li>
               <li><Link to="/">Back to Login</Link></li>
               <li>
                 <form className="navbar-form navbar-right" role="search">
                     <div className="form-group">
+                      <input className="form-control" id="username" placeholder="username"/>
+                    </div>
+                    <div className="form-group">
                       <input className="form-control" id="email" placeholder="email"/>
                     </div>
                     <div className="form-group">
-                      <input className="form-control" id="password" placeholder="password"/>
+                      <input className="form-control" id="password" type="password" placeholder="password"/>
                     </div>
                     <div className="form-group">
-                      <input className="form-control" id="password_confirmation" placeholder="retype password"/>
+                      <input className="form-control" type="password" id="password_confirmation" placeholder="retype password"/>
                     </div>
                       <button className="btn btn-default" onClick={this.handleSignup}>Submit</button>
                 </form>

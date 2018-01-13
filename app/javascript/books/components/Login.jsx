@@ -25,16 +25,16 @@ class Login extends React.Component {
   handleLogin(e) {
     e.preventDefault();
     let that = this
-    let email = document.getElementById("email").value
+    let username = document.getElementById("username").value
 
     axios.post('/users/sign_in', {
         user: {
-          email: document.getElementById("email").value,
+          username: document.getElementById("username").value,
           password: document.getElementById("password").value
         }
       })
       .then(function(response){
-        that.props.updateCurrentUser(email);
+        that.props.updateCurrentUser(username);
       })
       .catch(function(error) {
         that.updateLoginError();
@@ -60,7 +60,7 @@ class Login extends React.Component {
             <li>
             <form className="navbar-form navbar-right" role="search">
                 <div className="form-group">
-                  <input className="form-control" id="email" placeholder="email"/>
+                  <input className="form-control" id="username" placeholder="username"/>
                 </div>
                 <div className="form-group">
                   <input id="password" placeholder="password" type="password" className="form-control"/>
