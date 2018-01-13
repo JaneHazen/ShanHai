@@ -61,7 +61,7 @@ class Comments extends React.Component {
       return this.state.comments.map((comment, index)=>{
         if(comment.book_id == this_book){
           return(
-            <li key={comment.id}>
+            <li key={comment.id} className="booksLi">
               <article className="card" >
                 <h3 className="card-title">{comment.comment}</h3>
                 <p>{comment.user_id}</p>
