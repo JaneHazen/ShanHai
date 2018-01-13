@@ -6,7 +6,7 @@ import Timestamp from 'react-timestamp';
 
 
 import Header from '../Header';
-import Comments from '../Comments'
+import Comments from '../Comments';
 
 
 class Book extends Component {
