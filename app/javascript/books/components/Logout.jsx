@@ -39,7 +39,7 @@ class Logout extends React.Component {
             <li><Link to="/About">About</Link></li>
             <li><Link to="/Search">Search</Link></li>
             <li>
-              <button className="btn navbar-btn" onClick={this.handleLogout}>Sign Out</button>
+              <button className="btn navbar-btn" id="logout" onClick={this.handleLogout}>Sign Out</button>
             </li>
           </ul>
         </div>

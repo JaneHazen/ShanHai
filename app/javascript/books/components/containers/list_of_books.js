@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Timestamp from 'react-timestamp';
+
 
 class ListOfBooks extends Component {
 
@@ -8,14 +10,18 @@ class ListOfBooks extends Component {
             console.log("LIST", list)
             return list.map((item)=>{
                 return(
-                    <div key={item.id} className="card">
-                        <div className="left">
+                    <li key={item.id} className="booksLi">
+                        <div >
+                            <article className="popupContainer" key={item.id}>
+                                <p className="bookTitle">{item.title}</p>
+                                <p className="bookAuthor">{item.author}</p>
+                                <p className="bookDescription">{item.description}</p>
+                                <p>{item.user_id}</p>
+                                <p className="bookCreatedAt"><Timestamp time={item.created_at} format='full'/></p>
+                            </article>
+
                         </div>
-                        <div className="right">
-                            <h4>{item.title}</h4>
-                            <h6>{item.author}</h6>
-                        </div>
-                    </div>
+                    </li>
                 )
             })
         }
@@ -24,7 +30,9 @@ class ListOfBooks extends Component {
     render() {
         return (
             <div className="main_results">
-                {this.listOfBooks(this.props.books)}
+                <ul className="booksUl">
+                    {this.listOfBooks(this.props.books)}
+                </ul>
             </div>
         );
     }

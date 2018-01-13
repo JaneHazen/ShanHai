@@ -118,7 +118,9 @@ class Popup extends React.Component {
       <div className='popup'>
         <div className='popupInner' >
           <button className="close" aria-label="Close" onClick={this.props.closePopup}><span aria-hidden="true">&times;</span></button>
-            <h2 className="countryName">{this.props.country.props.children.countryName}</h2>
+            <div className="container-fluid">
+              <h2 className="countryName">{this.props.country.props.children.countryName}</h2>
+            </div>
             {this.renderNewBookForm()}
             <ul className="booksUl">
               {this.renderBooks()}
