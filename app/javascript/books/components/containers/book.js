@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {bookDetail, clearDetail} from '../actions';
+import {bookDetail, clearDetail, checkIfRead} from '../actions';
 import {bindActionCreators} from 'redux';
 import Timestamp from 'react-timestamp';
 
@@ -11,7 +11,6 @@ import Comments from '../Comments';
 
 class Book extends Component {
 
-
   componentDidMount(){
     this.props.bookDetail(this.props.match.params.id)
   }
@@ -20,13 +19,29 @@ class Book extends Component {
     this.props.clearDetail();
   }
 
+  seeIfRead(book_id, country, user_id){
+    console.log("BOOK:", book_id, "COUNTRY", country, "USER_ID:", user_id)
+    console.log("HELLO")
+    this.props.checkIfRead(book_id, country, user_id);
+    console.log(this.props)
+
+  }
+
+  renderHeart(book){
+    this.seeIfRead(book.id, book.country, this.props.currentUser)
+    return(
+      <div>
+      <span className="glyphicon glyphicon-heart"></span>
+      </div>)
+  }
+
   renderDetail = ({detail}) => {
     if(detail){
         return (
             <div key={detail.id} className="bookBox">
               <div className="container">
                 <article className="popupContainer" key={detail.id}>
-                  <h1 className="page-header">{detail.title}</h1>
+                  <h1 className="page-header">{this.renderHeart(detail)}{detail.title}</h1>
                   <h2>{detail.author}</h2>
                   <h3>{detail.description}</h3>
                   <p>{detail.user_id}</p>
@@ -38,7 +53,7 @@ class Book extends Component {
     }
   }
 
-  renderCommentForm(){
+  renderComments(){
     if(this.props.currentUser != null) {
       return(
           <Comments
@@ -63,10 +78,6 @@ class Book extends Component {
     })
   }
 
-  renderComments(){
-
-  }
-
   render(){
     return(
         <div>
@@ -75,7 +86,6 @@ class Book extends Component {
             updateCurrentUser={this.props.updateCurrentUser}
           />
           {this.renderDetail(this.props.books)}
-          {this.renderCommentForm()}
           {this.renderComments()}
         </div>
       )
@@ -89,7 +99,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({bookDetail, clearDetail},dispatch)
+  return bindActionCreators({bookDetail, clearDetail, checkIfRead},dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Book)
