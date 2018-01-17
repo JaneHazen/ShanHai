@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 
 

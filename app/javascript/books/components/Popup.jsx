@@ -81,7 +81,7 @@ class Popup extends React.Component {
         const countryUl = <ul><li>{book.country}</li></ul>
         if(book.country == this.props.country.props.children.countryName){
           return(
-            <Link to={`/books/${book.id}`} key={book.id} >
+            <Link to={`/books/${book.id}`} key={book.id} className="link">
               <li className="jumbotron">
                 <article className="popupContainer" key={book.id}>
                     <p className="bookTitle">{book.title}</p>

@@ -8,10 +8,9 @@ class ListOfBooks extends Component {
 
     listOfBooks = ({list}) =>{
         if(list){
-            console.log("LIST", list)
             return list.map((item)=>{
                 return(
-                    <Link to={`/books/${item.id}`} key={item.id} >
+                    <Link className="link" to={`/books/${item.id}`} key={item.id} >
                         <li className="booksLi">
                             <div >
                                 <article className="popupContainer" key={item.id}>

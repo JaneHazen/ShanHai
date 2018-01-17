@@ -32,9 +32,9 @@ class App extends React.Component {
     axios.get('/pages/are_we_there_yet',{
     })
     .then(function(response){
-      if(response.data.email){
+      if(response.data.id){
         that.setState({
-          currentUser: response.data.email
+          currentUser: response.data.id
         })
       } else {
         that.setState({
@@ -48,9 +48,9 @@ class App extends React.Component {
   }
 
 
-  updateCurrentUser(email) {
+  updateCurrentUser(id) {
     this.setState({
-      currentUser: email
+      currentUser: id
     })
   }
 
@@ -77,18 +77,21 @@ class App extends React.Component {
               <About {...props}
                 component={About}
                 currentUser={this.state.currentUser}
+                updateCurrentUser={this.updateCurrentUser}
               />
           )}/>
           <Route exact path="/search" render={(props) => (
               <Search {...props}
                 component={Search}
                 currentUser={this.state.currentUser}
+                updateCurrentUser={this.updateCurrentUser}
               />
           )}/>
           <Route exact path="/books/:id" render = {(props) =>(
               <Book {...props}
                 component={Book}
                 currentUser={this.state.currentUser}
+                updateCurrentUser={this.updateCurrentUser}
               />
             )}/>
         </div>
