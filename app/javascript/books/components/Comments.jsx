@@ -26,6 +26,7 @@ class Comments extends React.Component {
       that.setState({
         comments:response.data
       })
+      console.log("COMMENTs in the commment.jsx file ", that.state.comments)
     })
     .catch(function(error){
       console.log(error)
@@ -34,6 +35,7 @@ class Comments extends React.Component {
 
 
   componentDidMount(){
+    console.log("COMPONENT DID MOUNT")
     this.getComments()
     let that = this
     axios.get('/pages/are_we_there_yet',{
@@ -93,11 +95,9 @@ class Comments extends React.Component {
     return(
       <div>
         {this.renderNewCommentForm()}
-        <div>
-          <ul className="booksUl">
-            {this.renderComments()}
-          </ul>
-        </div>
+      <ul className="booksUl">
+        {this.renderComments()}
+      </ul>
       </div>
       )
   }

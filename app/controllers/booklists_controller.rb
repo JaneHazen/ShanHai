@@ -4,7 +4,6 @@ class BooklistsController < ApplicationController
   # GET /booklists
   # GET /booklists.json
   def index
-    p "INDEX" * 100
     @booklists = Booklist.all
     render json: @booklists
   end

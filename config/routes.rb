@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'pages/are_we_there_yet'
   get 'api/books/country'
   get 'api/books/book_id'
+  resources :unreadbooks, only: [:index, :create, :destroy]
   root to: "pages#home"
   namespace :api, defaults: {format: :json} do
     resources :books, only: [:index, :create, :destroy]

@@ -40,8 +40,7 @@ ActiveRecord::Schema.define(version: 20180114013847) do
   create_table "unreadbooks", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "book_id"
-    t.boolean "read"
-    t.string "country"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_unreadbooks_on_book_id"

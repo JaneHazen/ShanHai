@@ -21,8 +21,7 @@ class NewBookForm extends React.Component {
 
     })
     .then(function(response){
-      console.log("GET COMMENTS RESPONSE", response)
-      console.log("GET COMMENTS RESPONSE.DATA", response.data)
+      console.log("new comment form comments", response.data)
       that.setState({
         comments:response.data
       })

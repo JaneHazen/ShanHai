@@ -43,19 +43,19 @@ export function getBooks(keyword){
   }
 }
 
-export function checkIfRead(book_id, country, user_id){
-  console.log(book_id, country, user_id, "$$$$$$")
-  const request = axios.post('/unreadbooks',{
+export function checkIfRead(book_id, user_id){
+  const request = axios.get('/unreadbooks',{
     params: {
       book_id: book_id,
-      country: country,
       user_id: user_id
     }
   })
   .then(function(response){
-      return response.data
+    console.log("READ DATA" , response)
+      return response.data.read
     })
     .catch(function(error){
+      console.log("ERRRRRRORa")
       console.log(error)
     });
 

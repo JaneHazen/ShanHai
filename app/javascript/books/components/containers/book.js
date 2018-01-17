@@ -19,16 +19,15 @@ class Book extends Component {
     this.props.clearDetail();
   }
 
-  seeIfRead(book_id, country, user_id){
-    console.log("BOOK:", book_id, "COUNTRY", country, "USER_ID:", user_id)
+  seeIfRead(book_id, user_id){
     console.log("HELLO")
-    this.props.checkIfRead(book_id, country, user_id);
-    console.log(this.props)
+    this.props.checkIfRead(book_id, user_id);
+    console.log("after check", this.props, "STATE", this.state)
 
   }
 
   renderHeart(book){
-    this.seeIfRead(book.id, book.country, this.props.currentUser)
+    this.seeIfRead(book.id,this.props.currentUser)
     return(
       <div>
       <span className="glyphicon glyphicon-heart"></span>

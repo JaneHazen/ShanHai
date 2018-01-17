@@ -4,16 +4,15 @@ class UnreadbooksController < ApplicationController
 
 
   def index
-    p "IN UNREADBOOKS CONTROLLER" *50
-    p params
-    @boolean = Unreadbook.where(country: params[:country], user_id: params[:user_id], book_id: params[:user_id])
+    @boolean = Unreadbook.where( user_id: params[:user_id], book_id: params[:book_id])
+
 
     render json: @boolean
   end
 
   def create
     p "UNREAD" * 100
-    @unreadbook = unreadbook.new(country: params[:country], user_id: params[:user_id], book_id: params[:user_id], read: true)
+    @unreadbook = Unreadbook.new(user_id: params[:user_id], book_id: params[:user_id], read: true)
     if @unreadbook.save
       sign_in :unreadbook, @unreadbook
       render json: @unreadbook
@@ -24,8 +23,11 @@ class UnreadbooksController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   def unreadbook_params
-    params.require(:unreadbook).permit(:user_id, :book_id, :country, :read)
+    params.require(:unreadbook).permit(:user_id, :book_id, :read)
   end
 
 end
