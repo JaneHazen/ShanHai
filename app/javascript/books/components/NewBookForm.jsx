@@ -8,7 +8,7 @@ class NewBookForm extends React.Component {
     this.state = {
       author: '',
       title: '',
-      country: this.props.country,
+      country: '',
       description:'',
       user_id: null,
     };
@@ -70,6 +70,7 @@ class NewBookForm extends React.Component {
 
     })
     .then(function(response){
+      that.props.getBooks()
       console.log(response);
     })
     .catch(function(error){
@@ -87,6 +88,7 @@ class NewBookForm extends React.Component {
           <h3>Add a book</h3>
             <input name="title" placeholder="title" type="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
             <input name="author" placeholder="author" type ="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
+            <input name="country" placeholder="country" type ="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
             <textarea name="description" placeholder="description" type="text" defaultValue="" onChange={this.handleInputChange}/> <br/>
             <input type="submit" onChange={this.handleSubmit} />
           </label>

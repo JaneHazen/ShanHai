@@ -4,8 +4,20 @@ class BooklistsController < ApplicationController
   # GET /booklists
   # GET /booklists.json
   def index
-    @booklists = Booklist.all
-    render json: @booklists
+    p "index" * 1000
+    p params
+    @comments = Booklist.where(book_id: params[:book_id])
+    p @comments
+    render json: @comments
+  end
+
+  def getcomments
+    p "getcomments" * 10000
+    p "THIS IS PARAMS:::"
+    p params
+    @comments = Booklist.where(book_id: params[:book_id])
+    p @comments
+    render json: @comments
   end
 
   # GET /booklists/1

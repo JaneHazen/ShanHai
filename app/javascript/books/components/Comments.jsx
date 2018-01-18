@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+import {connect} from 'react-redux';
+import {getComments, clearComments} from './actions';
+import {bindActionCreators} from 'redux';
+
+
 import NewCommentForm from './NewCommentForm'
 
 
@@ -11,32 +16,13 @@ class Comments extends React.Component {
     super(props);
     this.state = {
       user_id: null,
-      comments: []
     };
-
   }
 
-
-  getComments(){
-    let that = this
-    axios.get('/booklists', {
-
-    })
-    .then(function(response){
-      that.setState({
-        comments:response.data
-      })
-      console.log("COMMENTs in the commment.jsx file ", that.state.comments)
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-  }
 
 
   componentDidMount(){
-    console.log("COMPONENT DID MOUNT")
-    this.getComments()
+    this.props.getComments(this.props.this_book_id)
     let that = this
     axios.get('/pages/are_we_there_yet',{
     })
@@ -52,37 +38,20 @@ class Comments extends React.Component {
     })
   }
 
-  componentWillMount(){
-    this.getComments()
+  componentWillUnmount(){
+    this.props.clearComments()
   }
 
 
-  renderComments(){
-    const this_book = this.props.book_id
-    if(this.state.comments.length > 0){
-      return this.state.comments.map((comment, index)=>{
-        if(comment.book_id == this_book){
-          return(
-            <li key={comment.id} className="booksLi">
-              <article className="card" >
-                <h3 className="card-title">{comment.comment}</h3>
-                <p>{comment.user_id}</p>
-              </article>
-            </li>
-          )
-        }
-      })
-    }
-  }
+
 
   renderNewCommentForm(){
     if(this.props.currentUser !== null){
       return(
         <div>
           <NewCommentForm
-            currentUser = {this.props.currentUser}
-            book_id = {this.props.book_id}
-            getComments = {this.getComments()}
+            currentUser = {this.state.user_id}
+            book_id = {this.props.this_book_id}
           />
         </div>
         )
@@ -95,12 +64,19 @@ class Comments extends React.Component {
     return(
       <div>
         {this.renderNewCommentForm()}
-      <ul className="booksUl">
-        {this.renderComments()}
-      </ul>
       </div>
       )
   }
 }
 
-export default Comments
+function mapStateToProps(state){
+  return{
+    comments:state.comments
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({getComments, clearComments},dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments)

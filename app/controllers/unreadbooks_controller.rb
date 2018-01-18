@@ -11,7 +11,7 @@ class UnreadbooksController < ApplicationController
   end
 
   def create
-    p "UNREAD" * 100
+    p "CREATED" * 100
     @unreadbook = Unreadbook.new(user_id: params[:user_id], book_id: params[:user_id], read: true)
     if @unreadbook.save
       sign_in :unreadbook, @unreadbook
@@ -24,6 +24,9 @@ class UnreadbooksController < ApplicationController
   end
 
   def destroy
+    @unreadbook = Unreadbook.find_by(user_id: params[:user_id], book_id: params[:book_id])
+    p "DELETED" * 100
+    @unreadbook.destroy
   end
 
   def unreadbook_params

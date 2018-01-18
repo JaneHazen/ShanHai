@@ -12,6 +12,10 @@ export default function(state={}, action){
         return {...state, detail:action.payload}
       case 'CHECK_IF_READ':
         return {...state, is_it_read:action.payload}
+      case 'MARK_AS_READ':
+          return {...state}
+      case 'MARK_AS_UNREAD':
+          return {...state}
       default:
         return state;
     }
