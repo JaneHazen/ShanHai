@@ -1,46 +1,53 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {bookDetail, clearDetail, checkIfRead} from '../actions';
+import {bookDetail, clearDetail, checkIfRead, markAsRead, markAsUnread} from '../actions';
 import {bindActionCreators} from 'redux';
 import Timestamp from 'react-timestamp';
-
 
 import Header from '../Header';
 import Comments from '../Comments';
 
 
+
 class Book extends Component {
+
 
   componentDidMount(){
     this.props.bookDetail(this.props.match.params.id)
+    this.props.checkIfRead(this.props.location.pathname.toString().slice(7), this.props.currentUser)
   }
 
   componentWillUnmount(){
     this.props.clearDetail();
   }
 
-  seeIfRead(book_id, user_id){
-    console.log("HELLO")
-    this.props.checkIfRead(book_id, user_id);
-    console.log("after check", this.props, "STATE", this.state)
-
+  renderHeart(is_it_read){
+    if(is_it_read){
+      console.log("IN HERE", is_it_read)
+      if(is_it_read.length > 0){
+        return(
+          <div>
+            <span className="glyphicon glyphicon-heart" ></span>
+          </div>
+        )
+      } else {
+        return(
+          <div>
+            <span className="glyphicon glyphicon-heart-empty" ></span>
+          </div>
+        )
+      }
+    }
   }
 
-  renderHeart(book){
-    this.seeIfRead(book.id,this.props.currentUser)
-    return(
-      <div>
-      <span className="glyphicon glyphicon-heart"></span>
-      </div>)
-  }
 
-  renderDetail = ({detail}) => {
+  renderDetail = ({detail, is_it_read}) => {
     if(detail){
         return (
             <div key={detail.id} className="bookBox">
               <div className="container">
                 <article className="popupContainer" key={detail.id}>
-                  <h1 className="page-header">{this.renderHeart(detail)}{detail.title}</h1>
+                  {this.renderHeart(is_it_read)}
                   <h2>{detail.author}</h2>
                   <h3>{detail.description}</h3>
                   <p>{detail.user_id}</p>
@@ -52,30 +59,6 @@ class Book extends Component {
     }
   }
 
-  renderComments(){
-    if(this.props.currentUser != null) {
-      return(
-          <Comments
-            currentUser={this.props.currentUser}
-            book_id = {this.props.match.params.id}
-          />
-        )
-    }
-  }
-
-  getComments(){
-    let that = this
-    axios.get('/booklists', {
-    })
-    .then(function(response){
-      that.setState({
-        comments:response.data
-      })
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-  }
 
   render(){
     return(
@@ -85,7 +68,10 @@ class Book extends Component {
             updateCurrentUser={this.props.updateCurrentUser}
           />
           {this.renderDetail(this.props.books)}
-          {this.renderComments()}
+          <Comments
+            currentUser={this.props.currentUser}
+            this_book_id={this.props.location.pathname.toString().slice(7)}
+          />
         </div>
       )
   }
@@ -98,7 +84,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({bookDetail, clearDetail, checkIfRead},dispatch)
+  return bindActionCreators({bookDetail, clearDetail, checkIfRead, markAsRead, markAsUnread},dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Book)

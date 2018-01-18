@@ -31,9 +31,9 @@ class Header extends React.Component {
   render() {
     return(
       <div>
-            {this.renderNavBar()}
+        {this.renderNavBar()}
       </div>
-      )
+    )
   }
 }
 export default Header
