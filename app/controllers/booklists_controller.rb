@@ -12,9 +12,6 @@ class BooklistsController < ApplicationController
   end
 
   def getcomments
-    p "getcomments" * 10000
-    p "THIS IS PARAMS:::"
-    p params
     @comments = Booklist.where(book_id: params[:book_id])
     p @comments
     render json: @comments
