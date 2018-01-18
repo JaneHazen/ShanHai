@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bookDetail, clearDetail, checkIfRead, markAsRead, markAsUnread} from '../actions';
 import {bindActionCreators} from 'redux';
 import Timestamp from 'react-timestamp';
+import axios from 'axios';
 
 import Header from '../Header';
 import Comments from '../Comments';
@@ -10,29 +11,53 @@ import Comments from '../Comments';
 
 
 class Book extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      user_id : null
+    }
+  }
 
+  componentWillMount(){
+    let that = this
+    axios.get('/pages/are_we_there_yet',{
+    })
+    .then(function(response){
+      if(response.data){
+        console.log("GOT A REPONSES", response.data.id)
+        that.setState({
+          user_id: response.data.id
+        })
+      }
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+    console.log(this.state, "AFTER RESPONSESFASD")
+  }
 
   componentDidMount(){
     this.props.bookDetail(this.props.match.params.id)
-    this.props.checkIfRead(this.props.location.pathname.toString().slice(7), this.props.currentUser)
+    this.props.checkIfRead(this.props.location.pathname.toString().slice(7), this.state.user_id)
   }
 
   componentWillUnmount(){
     this.props.clearDetail();
   }
 
+
   renderHeart(is_it_read){
     if(is_it_read){
-      console.log("IN HERE", is_it_read)
+      {this.props.checkIfRead(this.props.location.pathname.toString().slice(7), this.state.user_id)}
       if(is_it_read.length > 0){
         return(
           <div>
-            <span className="glyphicon glyphicon-heart" ></span>
+            <span className="glyphicon glyphicon-heart" onClick={ () => this.props.markAsUnread(this.props.location.pathname.toString().slice(7), this.state.user_id)}></span>
           </div>
         )
       } else {
         return(
-          <div>
+          <div onClick={ () => this.props.markAsRead(this.props.location.pathname.toString().slice(7), this.state.user_id)}>
             <span className="glyphicon glyphicon-heart-empty" ></span>
           </div>
         )

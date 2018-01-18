@@ -64,6 +64,7 @@ export function getComments(book_id){
 }
 
 export function checkIfRead(book_id, user_id){
+
   const request = axios.get('/unreadbooks',{
     params: {
       book_id: book_id,
@@ -71,7 +72,7 @@ export function checkIfRead(book_id, user_id){
     }
   })
   .then(function(response){
-    console.log("READ DATA" , response)
+    console.log("READ DATA" , response.data)
       return response.data
     })
     .catch(function(error){
@@ -85,8 +86,8 @@ export function checkIfRead(book_id, user_id){
 }
 
 export function markAsRead(book_id, user_id){
-  console.log("IM HERE")
-  const request = axios.post('/unreadbooks', {
+  console.log("mark as unread ACTION")
+  const request = axios.post("/unreadbooks", {
     params: {
       book_id: book_id,
       user_id: user_id
@@ -94,7 +95,7 @@ export function markAsRead(book_id, user_id){
   })
   .then(function(response){
     console.log("POSTED")
-    {this.checkIfRead(book_id, user_id)}
+    return response.data
   })
   .catch(function(error){
     console.log(error)
