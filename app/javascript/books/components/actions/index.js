@@ -44,7 +44,7 @@ export function getBooks(keyword){
 }
 
 export function getComments(book_id){
-  const request = axios.get('/booklists', {
+  const request = axios.get('/booklists/getcomments', {
     params: {
       book_id: book_id
     }
@@ -86,7 +86,6 @@ export function checkIfRead(book_id, user_id){
 }
 
 export function markAsRead(book_id, user_id){
-  console.log("mark as unread ACTION")
   const request = axios.post("/unreadbooks", {
     params: {
       book_id: book_id,
@@ -94,7 +93,6 @@ export function markAsRead(book_id, user_id){
     }
   })
   .then(function(response){
-    console.log("POSTED")
     return response.data
   })
   .catch(function(error){
@@ -108,7 +106,6 @@ export function markAsRead(book_id, user_id){
 }
 
 export function markAsUnread(book_id, user_id){
-  console.log("MARK AS UNREAD IN HERE")
   const request = axios.delete(`/unreadbooks/${book_id}`, {
     params: {
       book_id: book_id,

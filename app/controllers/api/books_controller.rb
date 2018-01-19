@@ -7,7 +7,6 @@ class Api::BooksController < ApplicationController
 
   def country
     @books = Book.where(country: params[:country])
-
     render json: @books
   end
 
