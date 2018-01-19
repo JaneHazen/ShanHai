@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :unreadbooks, only: [:create]
-  resources :booklists
   devise_for :users, controllers: {registrations: 'registrations', sessions:'sessions'}
   get 'booklists/getcomments'
   get 'pages/home'

@@ -33,7 +33,6 @@ class Book extends Component {
     .catch(function(error){
       console.log(error);
     })
-    console.log(this.state, "AFTER RESPONSESFASD")
   }
 
   componentDidMount(){

@@ -9,6 +9,7 @@ class ListOfComments extends Component {
 
   listOfComments = ({comments}) =>{
     if(comments){
+      console.log("COMMENTSS", comments)
       return comments.map((comment, index)=>{
         return(
           <li key={comment.id} className="booksLi">
