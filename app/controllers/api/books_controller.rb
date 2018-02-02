@@ -25,11 +25,6 @@ class Api::BooksController < ApplicationController
     end
   end
 
-  def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
-    render json: @book
-  end
 
   def book_params
      p "*" * 100

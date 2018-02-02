@@ -1,27 +1,7 @@
 import axios from 'axios';
 
-
-export function handleLogin(username, password){
-  const request = axios.post('/users/sign_in', {
-        user: {
-          username: username,
-          password: password
-        }
-      })
-      .then(function(response){
-        console.log("RESPONSE!",response)
-        that.props.updateCurrentUser(response.id);
-      })
-      .catch(function(error) {
-        that.updateLoginError();
-        console.log(error);
-      });
-
-  return {
-    type: 'LOGIN_USER',
-    payload:request
-  }
-}
+export const GET_BOOKS = 'get_books';
+export const GET_BOOK = 'get_book';
 
 export function getBooks(keyword){
   const request = axios.get('/api/books/country', {
@@ -29,16 +9,9 @@ export function getBooks(keyword){
         country: keyword
       }
     })
-    .then(function(response){
-      return response.data
-    })
-    .catch(function(error){
-      console.log(error)
-    });
 
-    console.log("KEYWORD IN  ACTION:", keyword)
   return {
-    type: 'SEARCH_BOOKS',
+    type: GET_BOOKS,
     payload:request
   }
 }
@@ -127,21 +100,15 @@ export function markAsUnread(book_id, user_id){
 }
 
 
-export function bookDetail(id){
+export function getBook(id){
   const request = axios.get('/api/books/book_id', {
       params: {
         id: id
       }
-    })
-    .then(function(response){
-      return response.data
-    })
-    .catch(function(error){
-      console.log(error)
     });
 
   return {
-    type: 'BOOK_DETAIL',
+    type: GET_BOOK,
     payload: request
   }
 }
@@ -159,3 +126,6 @@ export function clearComments(){
     payload: []
   }
 }
+
+
+
