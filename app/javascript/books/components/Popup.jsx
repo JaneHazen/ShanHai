@@ -1,41 +1,26 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getBooks } from './actions';
+
 import axios from 'axios';
 import Timestamp from 'react-timestamp';
-import { Link } from 'react-router-dom';
-
-
 // components
 import NewBookForm from './NewBookForm'
 
-class Popup extends React.Component {
 
+class Popup extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      books:[],
       user_id: null
     }
-    this.editDelete = this.editDelete.bind(this);
   }
-
-  getBooks(){
-    let that = this
-    axios.get('/api/books', {
-    })
-    .then(function(response){
-      that.setState({
-        books:response.data
-      })
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-  }
-
 
   componentDidMount(){
-    this.getBooks()
+    const countryName = this.props.country.props.children.countryName
+    this.props.getBooks( countryName );
     let that = this
     axios.get('/pages/are_we_there_yet',{
     })
@@ -51,36 +36,10 @@ class Popup extends React.Component {
     })
   }
 
-  editDelete(book){
-    let bindBook = this.deleteTheBook.bind(this, book)
-
-    if(this.state.user_id == book.user_id){
-      return(
-        <div>
-          <button className="btn btn-primary" onClick={bindBook}>Delete</button>
-        </div>
-        )
-    }
-  }
-
-  deleteTheBook(book, e) {
-    e.preventDefault();
-    let that = this
-    axios.delete(`/api/books/${book.id}`, {
-      book: book.id
-    })
-    .then(function(response){
-      that.getBooks();
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-  }
 
   renderBooks(){
-      return this.state.books.map((book, index)=>{
-        const countryUl = <ul><li>{book.country}</li></ul>
-        if(book.country == this.props.country.props.children.countryName){
+    console.log(this.props)
+      return _.map(this.props.books, book => {
           return(
             <Link to={`/books/${book.id}`} key={book.id} className="link">
               <li className="jumbotron">
@@ -88,25 +47,23 @@ class Popup extends React.Component {
                     <p className="bookTitle">{book.title}</p>
                     <p className="bookAuthor">{book.author}</p>
                     <p className="bookDescription">{book.description}</p>
-                    <p>{book.user_id}</p>
-                    <div>{this.editDelete(book)}</div>
                     <p className="bookCreatedAt"><Timestamp time={book.created_at} format='full'/></p>
                 </article>
               </li>
             </Link>
-            )
-        }
-      })
+            );
+      });
   }
 
   renderNewBookForm(){
+    const countryName = this.props.country.props.children.countryName
     if (this.props.currentUser !== null){
       return (
           <div>
             <NewBookForm
             currentUser = {this.props.currentUser}
             country={this.props.country.props.children.countryName}
-            getBooks = {this.getBooks()}
+            getBooks = {this.props.getBooks}
             />
           </div>
           )
@@ -133,5 +90,8 @@ class Popup extends React.Component {
   }
 }
 
+function mapStateToProps(state){
+  return { books: state.books }
+}
 
-export default Popup
+export default connect(mapStateToProps, { getBooks })(Popup);

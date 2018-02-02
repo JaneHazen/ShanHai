@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {bookDetail, clearDetail, checkIfRead, markAsRead, markAsUnread} from '../actions';
+import { Link } from 'react-router-dom';
+import {getBook, clearDetail} from '../actions';
 import {bindActionCreators} from 'redux';
 import Timestamp from 'react-timestamp';
 import axios from 'axios';
@@ -36,8 +37,8 @@ class Book extends Component {
   }
 
   componentDidMount(){
-    this.props.bookDetail(this.props.match.params.id)
-    this.props.checkIfRead(this.props.location.pathname.toString().slice(7), this.state.user_id)
+    const {id } = this.props.match.params
+    this.props.getBook(id);
   }
 
   componentWillUnmount(){
@@ -45,42 +46,26 @@ class Book extends Component {
   }
 
 
-  renderHeart(is_it_read){
-    if(is_it_read){
-      {this.props.checkIfRead(this.props.location.pathname.toString().slice(7), this.state.user_id)}
-      if(is_it_read.length > 0){
-        return(
-          <div>
-            <span className="glyphicon glyphicon-heart" onClick={ () => this.props.markAsUnread(this.props.location.pathname.toString().slice(7), this.state.user_id)}></span>
-          </div>
-        )
-      } else {
-        return(
-          <div onClick={ () => this.props.markAsRead(this.props.location.pathname.toString().slice(7), this.state.user_id)}>
-            <span className="glyphicon glyphicon-heart-empty" ></span>
-          </div>
-        )
+
+  renderBook = () => {
+      const {book} = this.props;
+
+      if (!book){
+        return <div>Loading...</div>;
       }
-    }
-  }
 
-
-  renderDetail = ({detail, is_it_read}) => {
-    if(detail){
-        return (
-            <div key={detail.id} className="bookBox">
-              <div className="container">
-                <article className="popupContainer" key={detail.id}>
-                  {this.renderHeart(is_it_read)}
-                  <h2>{detail.author}</h2>
-                  <h3>{detail.description}</h3>
-                  <p>{detail.user_id}</p>
-                  <p className="bookCreatedAt"><Timestamp time={detail.created_at} format='full'/></p>
-                </article>
-              </div>
-           </div>
-          )
-    }
+      return (
+        <div key={book.id} className="bookBox">
+          <div className="container">
+            <article className="popupContainer" key={book.id}>
+              <h2>{book.author}</h2>
+              <h3>{book.description}</h3>
+              <p>{book.user_id}</p>
+              <p className="bookCreatedAt"><Timestamp time={book.created_at} format='full'/></p>
+            </article>
+          </div>
+        </div>
+      );
   }
 
 
@@ -91,7 +76,7 @@ class Book extends Component {
             currentUser={this.props.currentUser}
             updateCurrentUser={this.props.updateCurrentUser}
           />
-          {this.renderDetail(this.props.books)}
+          {this.renderBook()}
           <Comments
             currentUser={this.props.currentUser}
             this_book_id={this.props.location.pathname.toString().slice(7)}
@@ -101,14 +86,11 @@ class Book extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps({ books }, ownProps){
   return{
-    books:state.books
+    book:books[ownProps.match.params.id]
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({bookDetail, clearDetail, checkIfRead, markAsRead, markAsUnread},dispatch)
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Book)
+export default connect(mapStateToProps, { getBook })(Book);

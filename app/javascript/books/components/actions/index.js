@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_BOOKS = 'get_books';
+export const GET_BOOK = 'get_book';
 
 export function getBooks(keyword){
   const request = axios.get('/api/books/country', {
@@ -8,12 +9,6 @@ export function getBooks(keyword){
         country: keyword
       }
     })
-    .then(function(response){
-      return response.data
-    })
-    .catch(function(error){
-      console.log(error)
-    });
 
   return {
     type: GET_BOOKS,
@@ -105,21 +100,15 @@ export function markAsUnread(book_id, user_id){
 }
 
 
-export function bookDetail(id){
+export function getBook(id){
   const request = axios.get('/api/books/book_id', {
       params: {
         id: id
       }
-    })
-    .then(function(response){
-      return response.data
-    })
-    .catch(function(error){
-      console.log(error)
     });
 
   return {
-    type: 'BOOK_DETAIL',
+    type: GET_BOOK,
     payload: request
   }
 }
@@ -137,3 +126,6 @@ export function clearComments(){
     payload: []
   }
 }
+
+
+
