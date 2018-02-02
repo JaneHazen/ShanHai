@@ -1,27 +1,6 @@
 import axios from 'axios';
 
-
-export function handleLogin(username, password){
-  const request = axios.post('/users/sign_in', {
-        user: {
-          username: username,
-          password: password
-        }
-      })
-      .then(function(response){
-        console.log("RESPONSE!",response)
-        that.props.updateCurrentUser(response.id);
-      })
-      .catch(function(error) {
-        that.updateLoginError();
-        console.log(error);
-      });
-
-  return {
-    type: 'LOGIN_USER',
-    payload:request
-  }
-}
+export const GET_BOOKS = 'get_books';
 
 export function getBooks(keyword){
   const request = axios.get('/api/books/country', {
@@ -36,9 +15,8 @@ export function getBooks(keyword){
       console.log(error)
     });
 
-    console.log("KEYWORD IN  ACTION:", keyword)
   return {
-    type: 'SEARCH_BOOKS',
+    type: GET_BOOKS,
     payload:request
   }
 }

@@ -1,11 +1,11 @@
-const state = {
-  list:[]
-}
+import _ from 'lodash';
+
+import {GET_BOOKS} from '../actions'
 
 export default function(state={}, action){
     switch(action.type){
-      case 'SEARCH_BOOKS':
-        return {...state, list:action.payload, detail:[]}
+      case GET_BOOKS:
+        return _.mapKeys(action.payload.data, 'id');
       case 'BOOK_DETAIL':
         return {...state, detail:action.payload}
       case 'CLEAR_DETAIL':

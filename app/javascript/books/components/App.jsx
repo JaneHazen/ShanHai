@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 
 
@@ -59,41 +59,43 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/" render={(props) => (
-              <Main {...props}
-                component={Main}
-                currentUser={this.state.currentUser}
-                updateCurrentUser={this.updateCurrentUser}
-              />
-          )}/>
-          <Route exact path="/signup" render={(props) => (
-              <Signup {...props}
-                component={Signup}
-                currentUser={this.state.currentUser}
-                updateCurrentUser={this.updateCurrentUser}
-              />
-          )}/>
-          <Route exact path="/about" render={(props) => (
-              <About {...props}
-                component={About}
-                currentUser={this.state.currentUser}
-                updateCurrentUser={this.updateCurrentUser}
-              />
-          )}/>
-          <Route exact path="/search" render={(props) => (
-              <Search {...props}
-                component={Search}
-                currentUser={this.state.currentUser}
-                updateCurrentUser={this.updateCurrentUser}
-              />
-          )}/>
-          <Route exact path="/books/:id" render = {(props) =>(
-              <Book {...props}
-                component={Book}
-                currentUser={this.state.currentUser}
-                updateCurrentUser={this.updateCurrentUser}
-              />
+          <Switch>
+            <Route path="/signup" render={(props) => (
+                <Signup {...props}
+                  component={Signup}
+                  currentUser={this.state.currentUser}
+                  updateCurrentUser={this.updateCurrentUser}
+                />
             )}/>
+            <Route path="/about" render={(props) => (
+                <About {...props}
+                  component={About}
+                  currentUser={this.state.currentUser}
+                  updateCurrentUser={this.updateCurrentUser}
+                />
+            )}/>
+            <Route path="/search" render={(props) => (
+                <Search {...props}
+                  component={Search}
+                  currentUser={this.state.currentUser}
+                  updateCurrentUser={this.updateCurrentUser}
+                />
+            )}/>
+            <Route path="/books/:id" render = {(props) =>(
+                <Book {...props}
+                  component={Book}
+                  currentUser={this.state.currentUser}
+                  updateCurrentUser={this.updateCurrentUser}
+                />
+              )}/>
+            <Route path="/" render={(props) => (
+                <Main {...props}
+                  component={Main}
+                  currentUser={this.state.currentUser}
+                  updateCurrentUser={this.updateCurrentUser}
+                />
+            )}/>
+          </Switch>
         </div>
       </BrowserRouter>
     )
