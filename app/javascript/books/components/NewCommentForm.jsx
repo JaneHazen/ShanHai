@@ -24,8 +24,6 @@ class NewCommentForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     console.log("PROPS", this.props.currentUser)
-    console.log("Book!", this.props)
-    e.preventDefault();
     let that = this
     axios.post('/booklists',{
         user_id: that.props.currentUser,
@@ -33,7 +31,6 @@ class NewCommentForm extends React.Component {
         comment: that.state.comment
     })
     .then(function(response){
-      console.log(that.props)
       console.log(response);
       console.log(that.state.comments)
       console.log("FUNCTION RESPONSE TO COMMENT SUBMIT")
